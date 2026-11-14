@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Secret scan on staged changes. See ~/.claude/WORKFLOW.md §7/§11.
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks not installed locally — skipping local secret scan." >&2
+  echo "pre-commit: install it (https://github.com/gitleaks/gitleaks#installing) to catch secrets before they leave your machine." >&2
+  echo "pre-commit: CI still runs gitleaks on every PR regardless." >&2
+  exit 0
+fi
+
+gitleaks protect --staged --redact --config .gitleaks.toml

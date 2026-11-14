@@ -1,0 +1,9 @@
+title = "gitleaks config for elena-portfolio"
+
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+  '''package-lock\.json''',
+]
