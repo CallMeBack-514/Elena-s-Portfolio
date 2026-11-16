@@ -5,7 +5,21 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
+    ignore:
+      # Type definitions must match the Node major we run on (.nvmrc: 24).
+      # Bump this together with .nvmrc, not on its own.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # @astrojs/check@0.9.12 peer-requires typescript ^5 || ^6; 7.x breaks
+      # `npm ci` (see specs/tech-stack.md). Remove once @astrojs/check supports 7.
+      - dependency-name: "typescript"
+        versions: [">=7.0.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      # One weekly PR for all CI step updates, so merging one doesn't leave
+      # the others behind main (the ruleset requires up-to-date branches).
+      github-actions:
+        patterns: ["*"]
