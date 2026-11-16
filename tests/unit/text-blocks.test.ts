@@ -16,19 +16,10 @@ function issuePaths(input: unknown): string[] {
   return result.error.issues.map((issue) => issue.path.join("."));
 }
 
+// The "missing Language" cases live in tests/invariants/text-blocks.test.ts.
 describe("textBlockSchema", () => {
   it("accepts a complete Text block", () => {
     expect(textBlockSchema.safeParse(portrait).success).toBe(true);
-  });
-
-  it("rejects a missing Language, naming the field", () => {
-    const noItalian = { fr: portrait.byline.fr, en: portrait.byline.en };
-    expect(issuePaths({ ...portrait, byline: noItalian })).toContain("byline.it");
-  });
-
-  it("rejects an empty Language value, naming the field", () => {
-    const bio = [{ ...portrait.bio[0], it: tr("   ") }];
-    expect(issuePaths({ ...portrait, bio })).toContain("bio.0.it.value");
   });
 
   it("requires English and Italian values to say whether they were reviewed", () => {

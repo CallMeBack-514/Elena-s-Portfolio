@@ -63,19 +63,21 @@ const OG_LOCALE: Record<Language, string> = { fr: "fr_CA", en: "en_CA", it: "it_
     <Font cssVariable="--font-sans" />
   </head>
   <body>
-    <div class="strip">
-      <div class="wrap">
-        <span>{site.location.value}</span>
-        <div class="strip-tools">
-          <LanguageSwitcher lang={lang} path={path} />
-          <ThemeToggle lang={lang} />
+    <header>
+      <div class="strip">
+        <div class="wrap">
+          <span>{site.location.value}</span>
+          <div class="strip-tools">
+            <LanguageSwitcher lang={lang} path={path} />
+            <ThemeToggle lang={lang} />
+          </div>
         </div>
       </div>
-    </div>
-    <header class="mast">
-      <div class="wrap">
-        <h1>{NAME}</h1>
-        <p class="motto">{inLang(site.tagline, lang)}</p>
+      <div class="mast">
+        <div class="wrap">
+          <h1>{NAME}</h1>
+          <p class="motto">{inLang(site.tagline, lang)}</p>
+        </div>
       </div>
     </header>
     <nav class="nav" aria-label={t(lang, "nav.label")}>

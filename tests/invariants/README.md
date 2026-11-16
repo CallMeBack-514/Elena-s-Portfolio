@@ -36,7 +36,23 @@ failure this suite exists to prevent.
 
 ## What's here now
 
-- `accessibility.spec.ts` — zero automatically-detectable a11y violations
-  (via `@axe-core/playwright`) on every public page. Promoted at
-  `/sdd-init` because it's a baseline the whole site must hold, not tied to
-  one feature.
+`npm run test:invariants` runs two suites: Vitest (`*.test.ts`) and then
+Playwright (`*.spec.ts`), both against the built site in `dist/`. Page lists
+come from `tests/support/pages.ts`, which reads `dist/`, so new pages are
+covered with no list to update.
+
+- `accessibility.spec.ts`: zero automatically detectable a11y violations
+  (via `@axe-core/playwright`) on **every built page**, in every Language,
+  in light and dark. Promoted at `/sdd-init` and extended by
+  `public-site-shell`.
+- `languages.spec.ts`: every Visitor-facing page exists under `/fr/`,
+  `/en/` and `/it/` with a matching `<html lang>` (spec: site-languages).
+- `text-blocks.test.ts`: a Text block missing a Language, or with an empty
+  one, is rejected and names the field. This is what fails the build
+  (ADR-0006).
+- `external-resources.spec.ts`: pages load nothing from other origins
+  except those on its `ALLOWED_ORIGINS` list, which is empty in 2a. Adding
+  an origin is a deliberate, spec-level decision.
+- `prelaunch.spec.ts`: while `LAUNCHED` is false, every page carries a
+  robots noindex meta and `dist/_headers` sends `X-Robots-Tag: noindex`. It
+  flips to asserting their absence once launched.
