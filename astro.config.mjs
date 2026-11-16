@@ -1,10 +1,12 @@
 import { defineConfig } from "astro/config";
 
-// Static-first: every page prerenders by default. When the admin portal
-// feature is built, switch `output` to "hybrid" and opt individual portal
-// routes out of prerendering (`export const prerender = false;`) rather
-// than making the whole site server-rendered. See specs/tech-stack.md.
+// Static-first: every page prerenders by default, and `output` stays
+// "static" (Astro removed the old "hybrid" mode in v5). When the Portal is
+// built, add the @astrojs/cloudflare adapter and opt only the Portal's
+// routes out of prerendering (`export const prerender = false;`).
+// See specs/tech-stack.md and docs/adr/0003.
 export default defineConfig({
   output: "static",
-  site: "https://elena-portfolio.vercel.app",
+  // Intended free subdomain; confirm when the Cloudflare Pages project is created.
+  site: "https://elena-meyer.pages.dev",
 });

@@ -1,7 +1,7 @@
 # Elena's portfolio
 
 A journalism portfolio site built with [Astro](https://astro.build), plus
-(planned) an authenticated admin portal for Elena to manage content herself.
+(planned) an authenticated Portal for Elena to manage content herself.
 
 This project follows the Spec-Driven Development workflow documented at
 `~/.claude/WORKFLOW.md`. Start here:

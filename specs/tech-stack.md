@@ -15,37 +15,79 @@ versions; models default to stale versions carrying known vulnerabilities").
 
 ## Framework
 
-| Thing          | Version | Why                                                                                                                                                                                                                                                                                                |
-| -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Astro          | 7.4.12  | Static-first output for the public pages (fast, minimal JS, good for an image/content-heavy portfolio), with per-route server rendering available for the admin portal via "hybrid" output. One framework covers both halves of the mission instead of splitting into a separate frontend/backend. |
-| TypeScript     | 6.0.3   | Type safety across `.astro`/`.ts` files; required by `astro check`. Pinned to the 6.x line, not the newer 7.x, because `@astrojs/check@0.9.12` peer-requires `^5.0.0 \|\| ^6.0.0` — 7.x breaks the install (`npm ci` fails ERESOLVE). Bump together with `@astrojs/check` once it supports 7.x.    |
-| @astrojs/check | 0.9.12  | Powers `astro check` (the typecheck script).                                                                                                                                                                                                                                                       |
+| Thing          | Version | Why                                                                                                                                                                                                                                                                                              |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Astro          | 7.4.12  | Static-first output for the public pages (fast, minimal JS, good for an image-heavy portfolio), with per-route server rendering for the Portal. One framework covers both halves of the mission instead of a separate frontend and backend. Built-in i18n routing covers `/fr/`, `/en/`, `/it/`. |
+| TypeScript     | 6.0.3   | Type safety across `.astro`/`.ts` files; required by `astro check`. Pinned to the 6.x line, not the newer 7.x, because `@astrojs/check@0.9.12` peer-requires `^5.0.0 \|\| ^6.0.0` — 7.x breaks the install (`npm ci` fails ERESOLVE). Bump together with `@astrojs/check` once it supports 7.x.  |
+| @astrojs/check | 0.9.12  | Powers `astro check` (the typecheck script).                                                                                                                                                                                                                                                     |
 
-**Rendering mode**: starts as Astro's default static output (`output:
-'static'` in `astro.config.mjs`) — this is all the current skeleton needs,
-and Vercel serves a static Astro build with zero adapter. When the admin
-portal feature is built, add the `@astrojs/vercel` adapter (pinned version
-below), switch `output` to `"hybrid"`, and mark the portal's routes
-`export const prerender = false;` — the public pages stay static, only the
-portal and its API routes render per-request. This is a decision for that
-feature's `/sdd-spec`, not retrofitted here; noted so the implementing
-session doesn't have to rediscover it.
+**Rendering mode**: `output: "static"` (Astro's default) — and it stays
+`"static"`. Astro removed the old `"hybrid"` mode in v5: a static site with
+an adapter installed can opt individual routes into per-request rendering
+with `export const prerender = false;`. When the Portal is built (build
+step 3), add the `@astrojs/cloudflare` adapter and mark only the Portal's
+pages and API routes `prerender = false`. Public pages stay pre-built.
 
-## Auth, database, storage, deployment adapter (planned — installed when the portal feature is built)
+**Languages**: Astro's built-in `i18n` config, locales `fr`, `en`, `it`,
+every locale prefixed in the URL. The bare `/` picks the Visitor's
+browser Language; since `/` is pre-built, this is done by a tiny script on
+that page (or a host redirect rule), with French as the fallback — decided
+in build step 2's spec.
 
-| Thing                              | Version | Why                                                                                                                                                                                                                                                                                 |
-| ---------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| @astrojs/vercel                    | 11.0.22 | Deployment adapter needed once the site has server-rendered routes (the portal). Peer-requires `astro@^7.0.0` — satisfied by the pin above. Not needed, and not installed, for the current static skeleton.                                                                         |
-| Supabase (`@supabase/supabase-js`) | 2.119.0 | One managed service for authentication, the entries database (Postgres), and file storage (uploaded photos). Avoids hand-rolling auth — rolling custom auth is a named security risk the user explicitly chose to avoid. Free tier is sufficient for a single-admin portfolio site. |
+**How new content goes live** (ADR-0003): public pages are built from
+Supabase at build time, never at request time. Saving a Published Entry
+calls a Cloudflare Pages _deploy hook_ (a secret URL that starts a build).
+A Cloudflare **Cron Trigger** starts a build every 3 days, which keeps the
+free Supabase project from pausing (it pauses after ~7 days without
+activity) and catches build breakage early. Not GitHub Actions: GitHub
+disables scheduled workflows in public repos after 60 days without commits.
 
-Not installed as a dependency yet — `/sdd-init` scaffolds the harness, not
-the portal feature. The version above is pinned here now so the number
-doesn't go stale by the time that feature starts. Verify with `npm view
-@supabase/supabase-js version` before installing, in case time has passed.
+## Hosting / deployment
+
+| Thing               | Version / plan | Why                                                                                                                                                                                                                                                                             |
+| ------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cloudflare Pages    | Free plan      | Free plan permits commercial use (Vercel's Hobby plan does not — ADR-0002), unlimited bandwidth, 500 builds/month, a preview deployment per PR, Astro support. Portal routes run as Cloudflare functions, which cannot reach internal network addresses (relevant to ADR-0005). |
+| @astrojs/cloudflare | 14.4.3         | Adapter for the Portal's per-request routes. Peer-requires `astro@^7.4.0` (satisfied) and `wrangler@^4.125.0`. Installed in build step 3, not before. 14.4.3 was chosen as the newest release more than two weeks old on 2026-11-16.                                            |
+
+Address: a free `*.pages.dev` subdomain (intended: `elena-meyer.pages.dev`,
+confirmed when the Cloudflare project is created). No custom domain.
+
+## Auth, database, storage (planned — installed in build step 3)
+
+| Thing                   | Version | Why                                                                                                                                                                                                                                 |
+| ----------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Supabase (free plan)    | —       | One managed service for authentication, the Entries database (Postgres) and photo storage (ADR-0001). Avoids hand-rolling auth. Free plan: 1 GB storage, no image transforms (ADR-0008), pauses after ~7 idle days (handled above). |
+| `@supabase/supabase-js` | 2.118.0 | Client library. 2.118.0 rather than the newer 2.119.0, which was under two weeks old on 2026-11-16.                                                                                                                                 |
+| `@supabase/ssr`         | 0.12.7  | Cookie-based sessions for server-rendered routes (the Portal), so session tokens live in `httpOnly` cookies rather than browser storage.                                                                                            |
+
+Sign-in is email + password only (ADR-0004); Supabase's built-in sign-in
+rate limiting must stay enabled. Supabase's free built-in mailer only
+sends a few emails per hour and only to project-team addresses, so Elena's
+address must be on the project team for password-reset emails to arrive.
+
+Verify every version with `npm view <pkg> version` (and its publish date)
+before installing, in case time has passed.
 
 **Why Supabase over the Vercel+Clerk+Blob alternative**: one account, one
 dashboard, one set of docs to keep current (via Context7) instead of three.
 Revisit only if a specific Supabase limitation is hit.
+
+**Accounts**: GitHub, Supabase and Cloudflare are owned by the Maintainer,
+with Elena added as a member where the service allows. The Maintainer can
+reset Elena's password from the Supabase dashboard.
+
+## Media
+
+- **Video** (Télé Clips): our own cover image and play button; the
+  platform's player (YouTube, or Radio-Canada's if it allows embedding)
+  loads only on click (ADR-0007). Whether Radio-Canada's player embeds is
+  checked in build step 2; if it doesn't, Clips are link cards.
+- **Audio** (Episodes): our own audio player streaming the MP3 listed in
+  each Show's public feed. A Show without a public feed falls back to a
+  Spotify embed behind the same click-to-load cover. Which feeds exist is
+  checked in build step 6.
+- **Photos**: resized in the browser to max 2560 px before upload; the
+  build generates the smaller sizes with Astro's image tooling (ADR-0008).
 
 ## Testing
 
@@ -69,12 +111,6 @@ Revisit only if a specific Supabase limitation is hit.
 | Prettier               | 3.10.1                                                                                                                                                                                  |
 | prettier-plugin-astro  | 1.1.2                                                                                                                                                                                   |
 
-## Hosting / deployment
-
-- **Vercel** — first-class Astro support, free tier, preview deployment per
-  PR (step 14 of the loop becomes "open the preview URL" rather than
-  "run it locally" once this is wired up).
-
 ## Security tooling
 
 Repo is **public** (confirmed at `/sdd-init`), so the free path from
@@ -96,12 +132,18 @@ see `~/.claude/WORKFLOW.md` §9 for the full private-repo cost table.
 
 - **Next.js** — considered as the conventional choice for an app with
   auth + a dashboard-like portal. Declined in favor of staying on one
-  framework (Astro hybrid mode) since the public site is the larger
-  surface area and Astro's static-first output suits it better.
-- **Self-hosted media storage/CDN** — v1 handles images via Supabase
-  storage and video/audio via embeds/links to existing platforms
-  (YouTube, Substack, Spotify/Apple Podcasts). No video transcoding
-  pipeline. Revisit only if Elena specifically wants self-hosted video.
+  framework (Astro, static with per-route server rendering) since the
+  public site is the larger surface area and Astro's static-first output
+  suits it better.
+- **Vercel** — the original hosting plan; replaced by Cloudflare Pages
+  (ADR-0002).
+- **A git-based CMS (Keystatic, Decap)** — would remove most of the Portal
+  work, but requires a GitHub sign-in, which Elena won't use (ADR-0001).
+- **Self-hosted video** — impossible on the free plans; video stays on
+  YouTube/Radio-Canada behind our own cover (ADR-0007).
+- **Custom player controls over YouTube (Plyr, Vidstack)** — rejected:
+  YouTube's terms restrict hiding its branding, and tracking still occurs
+  once loaded (ADR-0007).
 - **A headless CMS** (Contentful/Notion-as-CMS/etc.) — declined in favor
   of a purpose-built admin portal, since Elena wants a simple login +
   upload flow rather than a general CMS, and a custom portal is a better

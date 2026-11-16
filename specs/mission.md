@@ -1,85 +1,146 @@
 # Mission
 
+Vocabulary in this file follows `GLOSSARY.md`. The reasoning behind the
+larger decisions is in `docs/adr/`.
+
 ## What this is
 
-Elena's personal journalism portfolio: a public website showcasing her
-articles, videos, photography, and podcast work, plus a private portal where
-Elena logs in to add and manage that content without needing a developer.
+Elena Meyer's portfolio: a public website presenting her journalism, TV,
+podcast, research and art work in French, English and Italian. It also has a
+private **Portal** where Elena signs in to add and manage that work without
+needing a developer.
+
+Elena is a multiplatform journalist (Radio-Canada, Le Devoir, ICI RDI),
+podcast host and producer, and an M.A. journalism research student at
+Concordia, based in Toronto and Montréal. The site's structure and visual
+design come from a mockup she made herself.
 
 ## Why it exists
 
 Elena needs a single, professional home for her work that she controls
-directly. Right now her work is scattered across Substack, YouTube/Spotify,
-and wherever her articles and photos were originally published. This site
-aggregates links and embeds to that work and presents it under her own
-name and design, and lets her keep it current herself.
+directly. Her work is currently scattered across outlets, Spotify and
+Substack. The site gathers links to that work and plays her audio and video,
+under her own name and design, and she keeps it current herself.
 
-## Audience
+## Who it's for
 
-- **Primary**: editors, producers, and publications evaluating Elena for
-  commissions or hiring — people who want to see a portfolio quickly and
-  judge range and quality.
-- **Secondary**: readers/viewers who followed a link to her site from a
-  byline, social media, or a Substack/podcast cross-post.
-- **Not the audience**: the general public browsing for content discovery.
-  This is a portfolio, not a publishing platform — Elena's actual
-  articles/videos/podcast episodes continue to live on Substack, YouTube,
-  Spotify/Apple Podcasts, etc. This site curates and links/embeds to them.
+- **Primary**: editors, producers and publications evaluating Elena for
+  commissions or hiring. They want to judge her range and quality quickly,
+  often on a phone, and then contact her.
+- **Secondary**: readers and listeners who followed a link from a byline, a
+  podcast or social media.
+- **Not the audience**: the general public browsing for content. This is a
+  portfolio, not a publishing platform. Her articles, TV pieces and podcasts
+  stay hosted where they were published, and the site curates and links to
+  them.
+
+## The project's second purpose
+
+The project is also how its Maintainer learns and exercises their
+spec-driven workflow (`~/.claude/WORKFLOW.md`). Its ceremony, including the
+Critical-track work on authentication, is part of the point, not overhead
+to cut. Shipping a good site for Elena is still the result that matters.
 
 ## Scope
 
 ### In scope (v1)
 
-- Public-facing pages: home, articles, videos, photos, podcast — each a
-  curated list of entries (title, description, date, link or embed).
-- A private admin portal, reachable only by Elena, to log in and:
-  - add/edit/remove a content entry (article link, video embed, photo set,
-    podcast episode)
-  - upload a photo/image file, or paste an external link (YouTube, Substack,
-    Spotify/Apple Podcasts) as the entry's media
-- Single admin account (Elena). No visitor accounts, no comments, no
-  newsletter signup, no contact form in v1.
-- Public pages render as fast static output wherever possible; only the
-  admin portal and its data-writing routes require a server at request time.
+**Public site**, in three Languages (French, English, Italian):
 
-### Out of scope (v1 — revisit later if asked for)
+- Each Visitor-facing page exists at `/fr/…`, `/en/…` and `/it/…`.
+- A bare address sends the Visitor to the Language matching their browser,
+  falling back to French.
+- The **Main page** shows Elena's Text blocks and a Preview of every Section.
+- Each **Section** also has its own full page:
+  - **Articles**: Articles, filterable by Outlet.
+  - **Télé**: Clips. Video plays behind our own cover that loads the
+    platform's player only on click.
+  - **Balados**: Shows, each listing its Episodes in our own audio player.
+  - **Thèse**: a single Text block for now.
+  - **Art**: three Subsections, which are Portraits (photo Series, nudes
+    shown directly), Poésie (Poems, each with its own page) and Substack
+    (Imported Posts).
+- An About part (portrait/bio, collaborations, contact email and social
+  links as plain text and links). There is no contact form.
+- Light and dark themes. The site follows the Visitor's device setting and
+  has a toggle, remembered only on that device.
+- Elena's own text (Text blocks and Descriptions) exists in all three
+  Languages. Work titles, Poem text and Imported content stay in their
+  Original language, with a badge.
 
-- Multi-user / multi-role accounts (editor, assistant, etc.)
-- Visitor-facing accounts, comments, likes, newsletter signup
-- Self-hosted video/audio transcoding or a CDN pipeline for large media
-  (v1 supports image uploads and link/embed-based video & audio; see
-  tech-stack.md)
-- Analytics or visitor tracking of any kind
-- Search, tagging/filtering UI beyond simple chronological or category lists
-- Internationalization
+**Portal**, reachable only by Elena:
 
-### Explicitly deferred architecture decision
+- Sign in with email and password.
+- Add, edit, order (drag-and-drop) and delete Entries. Deleting is permanent
+  and asks for confirmation. Draft/Published switch.
+- Edit every Text block in all three Languages.
+- Add an Article by pasting its link. The Work title, a Description draft
+  and the cover image are fetched automatically and stay editable.
+- Upload photos for Series. Photos are resized in the browser before upload.
+- Hide individual Episodes and Posts.
+- Saving a Published Entry puts it live within a couple of minutes.
 
-The admin portal and file uploads turn this from a purely static site into
-one with a real authentication boundary. That boundary is treated as a
-**sensitive area** — see "Sensitive areas" below and `threat-model.md`.
-It is built as its own spec'd feature (Normal/Critical track via
-`/sdd-start`), not assumed or partially implemented during `/sdd-init`.
+**Automatic imports**:
 
-## Sensitive areas — these force the Critical track
+- Substack Posts are imported from Elena's public feed, arriving Published at
+  the top of the Substack Subsection.
+- Podcast Episodes are imported from each Show's public feed, where one
+  exists.
 
-Per the SDD workflow, the following are named now, in the constitution, so
-no later session can downgrade them by local judgement:
+### Out of scope (v1, revisit later if asked for)
 
-- **Authentication** — Elena's login (any flow: password, magic link, OAuth)
-- **The admin portal's write routes** — anything that creates, edits, or
-  deletes a published content entry, or uploads a file
-- **File upload handling** — path/filename handling, file type validation,
-  storage bucket permissions
-- **Session handling** — cookies, tokens, expiry, logout
+- Multiple accounts or roles (editor, assistant…).
+- Visitor accounts, comments, likes, newsletter signup, contact form.
+- Analytics or visitor tracking of any kind.
+- Self-hosted video: video stays on YouTube or Radio-Canada.
+- A custom domain. The site lives on a free `*.pages.dev` subdomain.
+- Search, or tag filtering beyond the Outlet filter.
+- A second sign-in factor (see ADR-0004).
 
-Any change touching these is Critical track regardless of how small it
-looks, per `~/.claude/WORKFLOW.md` §1.
+### Planned after v1
+
+- A **"Traduire"** button in the Portal that drafts the other two Languages
+  for Elena to review (ADR-0006).
+
+## Build order
+
+Each step is its own feature through `/sdd-start`:
+
+1. **Constitution amendment**: this file, `tech-stack.md`,
+   `threat-model.md`, `GLOSSARY.md` and the ADRs.
+2. **Public site**, in Elena's design, in FR/EN/IT, with her current content
+   built in. Includes the video cover and the theme toggle.
+3. **Portal core**: sign-in, Entries, Order, Draft/Published, Text blocks,
+   rebuild on save, the 3-day scheduled rebuild. _Critical._
+4. **Photo uploads** for Series. _Critical._
+5. **Article link auto-fetch.** _Critical._
+6. **Feed imports** (Substack, podcasts) and our own audio player.
+7. **Traduire** button.
+
+## Sensitive areas: these force the Critical track
+
+Named here so that no later session can downgrade them on its own judgement:
+
+- **Authentication**: Elena's sign-in, password reset.
+- **Portal write routes**: anything that creates, edits, orders, deletes or
+  publishes an Entry or Text block, or triggers a rebuild.
+- **File upload handling**: file type and size validation, storage bucket
+  permissions, file naming.
+- **Session handling**: cookies, tokens, expiry, sign-out.
+- **Server-side fetching of URLs**: the Article link auto-fetch, and the feed
+  imports wherever they run at request time rather than at build time.
+- **Row Level Security policies** on Supabase.
+
+Any change touching these is Critical track regardless of size, per
+`~/.claude/WORKFLOW.md` §1.
 
 ## Success looks like
 
-- Elena can, without asking a developer, log in and publish a new article
-  link, video embed, or photo set within a couple of minutes.
-- No one but Elena can reach the admin portal's write routes.
-- The public site loads fast (static-first) and looks credible to an editor
-  skimming it on a phone.
+- Elena can sign in and publish a new Article, Clip or Series within a
+  couple of minutes, without asking anyone.
+- New Substack Posts and podcast Episodes appear on the site with no action
+  from her.
+- No one but Elena can reach the Portal's write routes.
+- An editor skimming on a phone finds the site fast, credible and in their
+  Language, and can find how to contact her.
+- The site costs nothing to run.

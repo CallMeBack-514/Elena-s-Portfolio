@@ -3,6 +3,8 @@
 Standing rules for any agent working in this repo. See `~/.claude/WORKFLOW.md`
 for the full SDD workflow these rules belong to, and `specs/mission.md`,
 `specs/tech-stack.md`, `specs/threat-model.md` for project-specific context.
+Use the vocabulary in `GLOSSARY.md` (and its _Avoid_ lists) in code, docs and
+Portal labels; record hard-to-reverse decisions as ADRs in `docs/adr/`.
 
 ## Scope
 
@@ -10,9 +12,9 @@ for the full SDD workflow these rules belong to, and `specs/mission.md`,
   for. This is a single-maintainer portfolio site — resist turning it into
   a general CMS.
 - Touch only what the task requires.
-- The admin portal, auth, uploads, and session handling are named
-  **sensitive areas** in `specs/mission.md` — any change there is Critical
-  track, full stop, no agent judgement call downgrades it.
+- The Portal, auth, uploads, session handling, and server-side URL
+  fetching are named **sensitive areas** in `specs/mission.md` — any change
+  there is Critical track, full stop, no agent judgement call downgrades it.
 
 ## Explaining the work
 
@@ -37,7 +39,7 @@ _(this one is about you, not the code)_
   and may only be _removed from_ in its own change, with the removal
   justified in the commit message.
 
-## Database (Supabase Postgres, once the admin portal exists)
+## Database (Supabase Postgres, once the Portal exists)
 
 - You may write migrations. You may never execute one outside local or
   test/staging.
@@ -72,7 +74,7 @@ _(this one is about you, not the code)_
 
 ## Stack notes specific to this project
 
-- Astro is static-first; only the admin portal and its write routes should
+- Astro is static-first; only the Portal and its write routes should
   opt into server rendering (`export const prerender = false;`). Don't
   make public pages server-rendered without a reason — it's a perf and
   attack-surface regression.
