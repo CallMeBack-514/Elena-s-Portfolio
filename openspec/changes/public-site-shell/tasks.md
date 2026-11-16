@@ -40,6 +40,7 @@
   - the page: the masthead, the Section nav (anchors from `SECTIONS`), the Language switcher (current Language marked with `aria-current`, not linked), the theme toggle (rendered `hidden`, unhidden by a bundled script, storage in `try/catch`) and the footer.
 
   Verify: `npm run typecheck` and `npm run build` pass.
+
 - [x] 5.3 Add `scripts/make-og-card.ts` and generate the committed `public/og-card.png` (1200 × 630). Verify: the file exists with those dimensions (`file public/og-card.png`).
 
 ## 6. Pages
@@ -54,6 +55,7 @@
   - no flash: an `addInitScript` observer records `data-theme` at the first stylesheet application.
 
   Verify: `npm run test:e2e` passes.
+
 - [x] 6.4 Add `tests/e2e/metadata.spec.ts`:
   - per-Language `<title>` and description;
   - hreflang `fr`, `en`, `it` and `x-default` as absolute canonical URLs;
@@ -71,6 +73,7 @@
   - make `test:invariants` run `vitest run tests/invariants` followed by the Playwright invariants.
 
   The schema is the only thing that makes the build fail, so testing it directly avoids running a full `astro build` inside a test. Verify: `npm run test:invariants` runs both and passes.
+
 - [x] 7.4 Add `tests/invariants/external-resources.spec.ts`, with an empty `ALLOWED_ORIGINS` and a short comment that adding an origin is a deliberate decision. It records every request on every page in every Language and both themes, and fails on any other origin. Verify: it passes, and it fails if a Google Fonts `<link>` is added temporarily.
 - [x] 7.5 Add `tests/invariants/prelaunch.spec.ts`. While `LAUNCHED` is false, every built page has the robots noindex meta and `dist/_headers` holds the `X-Robots-Tag` rule. Update `tests/invariants/README.md` "What's here now" with all four new invariants. Verify: `npm run test:invariants` passes.
 
@@ -83,6 +86,7 @@
   - `npm run check:launch`.
 
   Verify: the Maintainer follows it, a PR gets a preview URL, and the preview serves `/fr/` with the `X-Robots-Tag` header (`curl -sI`).
+
 - [ ] 8.2 If the Cloudflare project's address differs from `elena-meyer.pages.dev`, update `site` in `astro.config.mjs` and the origin in `src/config/site.ts`. Verify: the metadata e2e test still passes.
 
 ## 9. Integration check
