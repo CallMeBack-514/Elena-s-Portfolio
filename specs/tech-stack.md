@@ -80,12 +80,17 @@ reset Elena's password from the Supabase dashboard.
 
 - **Video** (Télé Clips): our own cover image and play button; the
   platform's player (YouTube, or Radio-Canada's if it allows embedding)
-  loads only on click (ADR-0007). Whether Radio-Canada's player embeds is
-  checked in build step 2; if it doesn't, Clips are link cards.
-- **Audio** (Episodes): our own audio player streaming the MP3 listed in
-  each Show's public feed. A Show without a public feed falls back to a
-  Spotify embed behind the same click-to-load cover. Which feeds exist is
-  checked in build step 6.
+  loads only on click. Since ADR-0009 the cover exists for page weight, not
+  privacy; build step 2b decides whether to keep it. Whether Radio-Canada's
+  player embeds is checked in build step 2b; if it doesn't, Clips are link
+  cards.
+- **Audio** (Episodes): Spotify's embedded player; we build no player of
+  our own (ADR-0009). Episode lists come from each Show's public feed where
+  one exists (build step 6). An Episode with no Spotify embed is shown as
+  a link to where it is published; how feed Episodes are matched to their
+  Spotify embeds is decided in build step 6.
+- **Fonts**: self-hosted through Astro's built-in fonts support; no Google
+  Fonts requests.
 - **Photos**: resized in the browser to max 2560 px before upload; the
   build generates the smaller sizes with Astro's image tooling (ADR-0008).
 
@@ -140,10 +145,10 @@ see `~/.claude/WORKFLOW.md` §9 for the full private-repo cost table.
 - **A git-based CMS (Keystatic, Decap)** — would remove most of the Portal
   work, but requires a GitHub sign-in, which Elena won't use (ADR-0001).
 - **Self-hosted video** — impossible on the free plans; video stays on
-  YouTube/Radio-Canada behind our own cover (ADR-0007).
+  YouTube/Radio-Canada (ADR-0009).
 - **Custom player controls over YouTube (Plyr, Vidstack)** — rejected:
-  YouTube's terms restrict hiding its branding, and tracking still occurs
-  once loaded (ADR-0007).
+  YouTube's terms restrict hiding its branding, and the libraries break
+  when YouTube changes (ADR-0007, superseded on tracking by ADR-0009).
 - **A headless CMS** (Contentful/Notion-as-CMS/etc.) — declined in favor
   of a purpose-built admin portal, since Elena wants a simple login +
   upload flow rather than a general CMS, and a custom portal is a better
