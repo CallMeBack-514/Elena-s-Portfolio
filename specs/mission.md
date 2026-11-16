@@ -55,7 +55,8 @@ to cut. Shipping a good site for Elena is still the result that matters.
   - **Articles**: Articles, filterable by Outlet.
   - **Télé**: Clips. Video plays behind our own cover that loads the
     platform's player only on click.
-  - **Balados**: Shows, each listing its Episodes in our own audio player.
+  - **Balados**: Shows, each listing its Episodes, played in Spotify's
+    embedded player (ADR-0009).
   - **Thèse**: a single Text block for now.
   - **Art**: three Subsections, which are Portraits (photo Series, nudes
     shown directly), Poésie (Poems, each with its own page) and Substack
@@ -91,7 +92,8 @@ to cut. Shipping a good site for Elena is still the result that matters.
 
 - Multiple accounts or roles (editor, assistant…).
 - Visitor accounts, comments, likes, newsletter signup, contact form.
-- Analytics or visitor tracking of any kind.
+- Analytics of our own. We collect no Visitor data. Third-party embeds may
+  track Visitors; that is accepted (ADR-0009).
 - Self-hosted video: video stays on YouTube or Radio-Canada.
 - A custom domain. The site lives on a free `*.pages.dev` subdomain.
 - Search, or tag filtering beyond the Outlet filter.
@@ -114,7 +116,7 @@ Each step is its own feature through `/sdd-start`:
    rebuild on save, the 3-day scheduled rebuild. _Critical._
 4. **Photo uploads** for Series. _Critical._
 5. **Article link auto-fetch.** _Critical._
-6. **Feed imports** (Substack, podcasts) and our own audio player.
+6. **Feed imports** (Substack, podcasts).
 7. **Traduire** button.
 
 ## Sensitive areas: these force the Critical track

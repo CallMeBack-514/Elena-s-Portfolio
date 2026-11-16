@@ -10,7 +10,7 @@ The journalist whose work the site presents, and the only person who can sign in
 _Avoid_: user, admin, owner, author
 
 **Visitor**:
-Anyone viewing the public site; never signs in and is never tracked.
+Anyone viewing the public site; never signs in.
 _Avoid_: user, reader, audience
 
 **Maintainer**:
