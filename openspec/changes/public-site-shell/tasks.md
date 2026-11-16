@@ -34,19 +34,19 @@
 
 ## 5. Design, layout and theme
 
-- [ ] 5.1 Configure the fonts in `astro.config.mjs` (`fontProviders.fontsource()`, with the weights, styles and `latin` subset from design.md). Rewrite `src/styles/global.css` with the mockup's light tokens on `:root` and dark tokens under the two dark selectors. Verify: `npm run build` emits font files under `dist/_astro/`.
-- [ ] 5.2 Rewrite `src/layouts/BaseLayout.astro`. It takes a `lang` prop and contains:
+- [x] 5.1 Configure the fonts in `astro.config.mjs` (`fontProviders.fontsource()`, with the weights, styles and `latin` subset from design.md). Rewrite `src/styles/global.css` with the mockup's light tokens on `:root` and dark tokens under the two dark selectors. Verify: `npm run build` emits font files under `dist/_astro/`.
+- [x] 5.2 Rewrite `src/layouts/BaseLayout.astro`. It takes a `lang` prop and contains:
   - the head: the inline theme script first, `<Font>` preloads, title and description, robots meta while `!LAUNCHED`, hreflang alternates plus `x-default`, and Open Graph tags;
   - the page: the masthead, the Section nav (anchors from `SECTIONS`), the Language switcher (current Language marked with `aria-current`, not linked), the theme toggle (rendered `hidden`, unhidden by a bundled script, storage in `try/catch`) and the footer.
 
   Verify: `npm run typecheck` and `npm run build` pass.
-- [ ] 5.3 Add `scripts/make-og-card.ts` and generate the committed `public/og-card.png` (1200 × 630). Verify: the file exists with those dimensions (`file public/og-card.png`).
+- [x] 5.3 Add `scripts/make-og-card.ts` and generate the committed `public/og-card.png` (1200 × 630). Verify: the file exists with those dimensions (`file public/og-card.png`).
 
 ## 6. Pages
 
-- [ ] 6.1 Add `src/pages/[lang]/index.astro`, the Main page: the portrait part (photo optional), Collaborations, the full Thèse, Contact, and "coming soon" parts for Articles, Télé, Balados and Art. Each part is a landmark region with the id from `SECTIONS`. Add `tests/e2e/main-page.spec.ts` covering the main-page spec scenarios: masthead, nav anchors in `/it/`, no-photo portrait, Collaborations order, Thèse fields in `/en/`, "coming soon" in `/it/`, contact email as text with no form, footer, and the 360 px viewport. Verify: `npm run test:e2e` passes.
-- [ ] 6.2 Add `src/pages/index.astro`, the root page: three Language links and a bundled script calling `pickLanguage(navigator.languages)` then `location.replace`. Add `tests/e2e/languages.spec.ts`: `locale: "en-CA"` → `/en/`, `"de-DE"` → `/fr/`, JS disabled → three links, switcher from `/fr/` to `/it/`, `aria-current` on the current Language, and Section labels per Language. Verify: `npm run test:e2e` passes.
-- [ ] 6.3 Add `tests/e2e/theme.spec.ts`:
+- [x] 6.1 Add `src/pages/[lang]/index.astro`, the Main page: the portrait part (photo optional), Collaborations, the full Thèse, Contact, and "coming soon" parts for Articles, Télé, Balados and Art. Each part is a landmark region with the id from `SECTIONS`. Add `tests/e2e/main-page.spec.ts` covering the main-page spec scenarios: masthead, nav anchors in `/it/`, no-photo portrait, Collaborations order, Thèse fields in `/en/`, "coming soon" in `/it/`, contact email as text with no form, footer, and the 360 px viewport. Verify: `npm run test:e2e` passes.
+- [x] 6.2 Add `src/pages/index.astro`, the root page: three Language links and a bundled script calling `pickLanguage(navigator.languages)` then `location.replace`. Add `tests/e2e/languages.spec.ts`: `locale: "en-CA"` → `/en/`, `"de-DE"` → `/fr/`, JS disabled → three links, switcher from `/fr/` to `/it/`, `aria-current` on the current Language, and Section labels per Language. Verify: `npm run test:e2e` passes.
+- [x] 6.3 Add `tests/e2e/theme.spec.ts`:
   - the device default under both `colorScheme` values;
   - toggle and persist across pages;
   - the accessible name in French;
@@ -54,7 +54,7 @@
   - no flash: an `addInitScript` observer records `data-theme` at the first stylesheet application.
 
   Verify: `npm run test:e2e` passes.
-- [ ] 6.4 Add `tests/e2e/metadata.spec.ts`:
+- [x] 6.4 Add `tests/e2e/metadata.spec.ts`:
   - per-Language `<title>` and description;
   - hreflang `fr`, `en`, `it` and `x-default` as absolute canonical URLs;
   - Open Graph tags, with `og:locale` per Language and `og:image` returning a 1200 × 630 PNG;
@@ -64,15 +64,15 @@
 
 ## 7. Invariants
 
-- [ ] 7.1 Add `tests/support/pages.ts`, which lists the built Visitor-facing pages from `dist/**/index.html`, excluding the root chooser where a test says so.
-- [ ] 7.2 Rewrite `tests/invariants/accessibility.spec.ts` to run axe on every built page, in each Language, under `colorScheme` light and dark. Verify: `npm run test:invariants` passes. Also confirm it fails if a token's contrast is broken, by hand once, then restore.
-- [ ] 7.3 Add `tests/invariants/languages.spec.ts` (Playwright), asserting every page path exists under all three prefixes with the matching `<html lang>`. Move the "missing Language is rejected" case from 3.1 into `tests/invariants/text-blocks.test.ts` (Vitest). For that:
+- [x] 7.1 Add `tests/support/pages.ts`, which lists the built Visitor-facing pages from `dist/**/index.html`, excluding the root chooser where a test says so.
+- [x] 7.2 Rewrite `tests/invariants/accessibility.spec.ts` to run axe on every built page, in each Language, under `colorScheme` light and dark. Verify: `npm run test:invariants` passes. Also confirm it fails if a token's contrast is broken, by hand once, then restore.
+- [x] 7.3 Add `tests/invariants/languages.spec.ts` (Playwright), asserting every page path exists under all three prefixes with the matching `<html lang>`. Move the "missing Language is rejected" case from 3.1 into `tests/invariants/text-blocks.test.ts` (Vitest). For that:
   - extend `vitest.config.ts` to include `tests/invariants/**/*.test.ts`;
   - make `test:invariants` run `vitest run tests/invariants` followed by the Playwright invariants.
 
   The schema is the only thing that makes the build fail, so testing it directly avoids running a full `astro build` inside a test. Verify: `npm run test:invariants` runs both and passes.
-- [ ] 7.4 Add `tests/invariants/external-resources.spec.ts`, with an empty `ALLOWED_ORIGINS` and a short comment that adding an origin is a deliberate decision. It records every request on every page in every Language and both themes, and fails on any other origin. Verify: it passes, and it fails if a Google Fonts `<link>` is added temporarily.
-- [ ] 7.5 Add `tests/invariants/prelaunch.spec.ts`. While `LAUNCHED` is false, every built page has the robots noindex meta and `dist/_headers` holds the `X-Robots-Tag` rule. Update `tests/invariants/README.md` "What's here now" with all four new invariants. Verify: `npm run test:invariants` passes.
+- [x] 7.4 Add `tests/invariants/external-resources.spec.ts`, with an empty `ALLOWED_ORIGINS` and a short comment that adding an origin is a deliberate decision. It records every request on every page in every Language and both themes, and fails on any other origin. Verify: it passes, and it fails if a Google Fonts `<link>` is added temporarily.
+- [x] 7.5 Add `tests/invariants/prelaunch.spec.ts`. While `LAUNCHED` is false, every built page has the robots noindex meta and `dist/_headers` holds the `X-Robots-Tag` rule. Update `tests/invariants/README.md` "What's here now" with all four new invariants. Verify: `npm run test:invariants` passes.
 
 ## 8. Hosting and docs
 
