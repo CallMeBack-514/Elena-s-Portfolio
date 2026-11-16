@@ -86,7 +86,9 @@ reset Elena's password from the Supabase dashboard.
   cards.
 - **Audio** (Episodes): Spotify's embedded player; we build no player of
   our own (ADR-0009). Episode lists come from each Show's public feed where
-  one exists (build step 6).
+  one exists (build step 6). An Episode with no Spotify embed is shown as
+  a link to where it is published; how feed Episodes are matched to their
+  Spotify embeds is decided in build step 6.
 - **Fonts**: self-hosted through Astro's built-in fonts support; no Google
   Fonts requests.
 - **Photos**: resized in the browser to max 2560 px before upload; the
