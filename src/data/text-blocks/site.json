@@ -1,0 +1,22 @@
+{
+  "block": "site",
+  "tagline": {
+    "fr": { "value": "Journalisme multiplateforme, audio et recherche" },
+    "en": { "value": "Multiplatform journalism, audio and research", "reviewed": false },
+    "it": { "value": "Giornalismo multipiattaforma, audio e ricerca", "reviewed": false }
+  },
+  "description": {
+    "fr": {
+      "value": "Elena Meyer, journaliste multiplateforme à Radio-Canada : articles, télé, balados, recherche et art."
+    },
+    "en": {
+      "value": "Elena Meyer, multiplatform journalist at Radio-Canada: articles, TV, podcasts, research and art.",
+      "reviewed": false
+    },
+    "it": {
+      "value": "Elena Meyer, giornalista multipiattaforma a Radio-Canada: articoli, TV, podcast, ricerca e arte.",
+      "reviewed": false
+    }
+  },
+  "location": { "value": "Toronto · Montréal" }
+}

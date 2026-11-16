@@ -1,0 +1,60 @@
+{
+  "block": "these",
+  "programme": {
+    "fr": { "value": "M.A. Journalisme et innovation · Concordia" },
+    "en": { "value": "M.A. Journalism and Innovation · Concordia", "reviewed": false },
+    "it": { "value": "M.A. Giornalismo e innovazione · Concordia", "reviewed": false }
+  },
+  "question": {
+    "fr": { "value": "Comment raconter une communauté avec elle plutôt qu'à son sujet?" },
+    "en": {
+      "value": "How can we tell a community's story with it, rather than about it?",
+      "reviewed": false
+    },
+    "it": {
+      "value": "Come raccontare una comunità insieme a lei, invece che su di lei?",
+      "reviewed": false
+    }
+  },
+  "summary": {
+    "fr": {
+      "value": "Mémoire en recherche-création sur la couverture médiatique de la culture rave à Montréal. Le projet aboutit à un documentaire audio participatif : entrevues, enregistrements de terrain, paysages sonores et narration partagée avec les participantes et participants."
+    },
+    "en": {
+      "value": "A research-creation thesis on media coverage of rave culture in Montréal. The project leads to a participatory audio documentary: interviews, field recordings, soundscapes and narration shared with the participants.",
+      "reviewed": false
+    },
+    "it": {
+      "value": "Tesi di ricerca-creazione sulla copertura mediatica della cultura rave a Montréal. Il progetto sfocia in un documentario audio partecipativo: interviste, registrazioni sul campo, paesaggi sonori e narrazione condivisa con le e i partecipanti.",
+      "reviewed": false
+    }
+  },
+  "terrain": {
+    "fr": { "value": "Scène techno et rave de Montréal" },
+    "en": { "value": "Montréal's techno and rave scene", "reviewed": false },
+    "it": { "value": "La scena techno e rave di Montréal", "reviewed": false }
+  },
+  "cadre": {
+    "fr": {
+      "value": "Paniques morales, sous-cultures et post-sous-cultures, journalisme ethnographique, réflexivité"
+    },
+    "en": {
+      "value": "Moral panics, subcultures and post-subcultures, ethnographic journalism, reflexivity",
+      "reviewed": false
+    },
+    "it": {
+      "value": "Panico morale, sottoculture e post-sottoculture, giornalismo etnografico, riflessività",
+      "reviewed": false
+    }
+  },
+  "livrable": {
+    "fr": { "value": "Documentaire audio collaboratif, autorat partagé" },
+    "en": { "value": "Collaborative audio documentary, shared authorship", "reviewed": false },
+    "it": { "value": "Documentario audio collaborativo, autorialità condivisa", "reviewed": false }
+  },
+  "soutenance": {
+    "fr": { "value": "Prévue en 2027" },
+    "en": { "value": "Planned for 2027", "reviewed": false },
+    "it": { "value": "Prevista nel 2027", "reviewed": false }
+  }
+}
