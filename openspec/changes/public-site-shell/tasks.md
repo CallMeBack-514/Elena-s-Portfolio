@@ -2,23 +2,23 @@
 
 ## 0. Prerequisite
 
-- [ ] 0.1 Confirm the constitution-amendment PR (ADR-0009 superseding ADR-0007, the GLOSSARY Visitor entry, mission.md, tech-stack.md) is merged to `main` before branching. Verify: `docs/adr/0009-*.md` exists on `main`, and `grep -n "never tracked" GLOSSARY.md` returns nothing.
+- [x] 0.1 Confirm the constitution-amendment PR (ADR-0009 superseding ADR-0007, the GLOSSARY Visitor entry, mission.md, tech-stack.md) is merged to `main` before branching. Verify: `docs/adr/0009-*.md` exists on `main`, and `grep -n "never tracked" GLOSSARY.md` returns nothing.
 
 ## 1. Clear the scaffold
 
-- [ ] 1.1 Delete `src/pages/{articles,videos,photos,podcast}.astro`, the old `src/pages/index.astro` content and `tests/e2e/home.spec.ts`. Remove the hard-coded page list from `tests/invariants/accessibility.spec.ts`, which gets rewritten in group 7 and is not deleted. Verify: `npm run build` succeeds and `dist/` no longer contains those routes.
+- [x] 1.1 Delete `src/pages/{articles,videos,photos,podcast}.astro`, the old `src/pages/index.astro` content and `tests/e2e/home.spec.ts`. Remove the hard-coded page list from `tests/invariants/accessibility.spec.ts`, which gets rewritten in group 7 and is not deleted. Verify: `npm run build` succeeds and `dist/` no longer contains those routes.
 
 ## 2. Languages and interface strings
 
-- [ ] 2.1 Add `src/lib/languages.ts` with `LANGUAGES = ["fr","en","it"]`, the `Language` type, `pickLanguage(prefs)` and the `SECTIONS` list (ids `articles`, `tele`, `balados`, `these`, `art`). Unit-test `pickLanguage` in `tests/unit/languages.test.ts`: the primary subtag match, the order of preference, the French fallback, and an empty list. Verify: `npm run test:unit` passes.
-- [ ] 2.2 Configure `i18n` in `astro.config.mjs` (`prefixDefaultLocale: true`, `redirectToDefaultLocale: false`). Verify: `npm run build` succeeds.
-- [ ] 2.3 Add `src/i18n/ui.ts`, the typed `ui` dictionary with `satisfies Record<Language, Record<UiKey,string>>`, plus `t()`. It holds the Section names, nav label, "coming soon", switcher labels, theme toggle names, Thèse field labels, "Collaborations" and footer text. Verify: `npm run typecheck` fails if any key is deleted from one Language (check by hand once, then restore).
+- [x] 2.1 Add `src/lib/languages.ts` with `LANGUAGES = ["fr","en","it"]`, the `Language` type, `pickLanguage(prefs)` and the `SECTIONS` list (ids `articles`, `tele`, `balados`, `these`, `art`). Unit-test `pickLanguage` in `tests/unit/languages.test.ts`: the primary subtag match, the order of preference, the French fallback, and an empty list. Verify: `npm run test:unit` passes.
+- [x] 2.2 Configure `i18n` in `astro.config.mjs` (`prefixDefaultLocale: true`, `redirectToDefaultLocale: false`). Verify: `npm run build` succeeds.
+- [x] 2.3 Add `src/i18n/ui.ts`, the typed `ui` dictionary with `satisfies Record<Language, Record<UiKey,string>>`, plus `t()`. It holds the Section names, nav label, "coming soon", switcher labels, theme toggle names, Thèse field labels, "Collaborations" and footer text. Verify: `npm run typecheck` fails if any key is deleted from one Language (check by hand once, then restore).
 
 ## 3. Text block data
 
-- [ ] 3.1 Add `src/lib/text-blocks.ts`, with the `localized()` and `plain()` helpers and the discriminated-union schema for `site`, `portrait`, `collaborations`, `these` and `contact`. Unit-test it in `tests/unit/text-blocks.test.ts`: a valid block parses, and a missing or empty `it` value fails with a path naming the field. Verify: `npm run test:unit` passes.
-- [ ] 3.2 Add `src/content.config.ts` with the `textBlocks` collection (`glob` over `src/data/text-blocks/*.json`). Verify: `npm run build` succeeds once 3.3 has landed, and removing one `it` value makes the build fail with the field path.
-- [ ] 3.3 Write `src/data/text-blocks/*.json`:
+- [x] 3.1 Add `src/lib/text-blocks.ts`, with the `localized()` and `plain()` helpers and the discriminated-union schema for `site`, `portrait`, `collaborations`, `these` and `contact`. Unit-test it in `tests/unit/text-blocks.test.ts`: a valid block parses, and a missing or empty `it` value fails with a path naming the field. Verify: `npm run test:unit` passes.
+- [x] 3.2 Add `src/content.config.ts` with the `textBlocks` collection (`glob` over `src/data/text-blocks/*.json`). Verify: `npm run build` succeeds once 3.3 has landed, and removing one `it` value makes the build fail with the field path.
+- [x] 3.3 Write `src/data/text-blocks/*.json`:
   - The French values come from Elena's mockup: tagline, bio, byline, Collaborations, Thèse.
   - We draft the EN and IT values, all `reviewed: false`.
   - The contact email is a `placeholder: true` value.
@@ -28,9 +28,9 @@
 
 ## 4. Launch readiness
 
-- [ ] 4.1 Add `src/config/site.ts` (`LAUNCHED = false`, canonical origin) and `src/lib/launch-readiness.ts` (`findBlockers`, pure, importing no Astro modules). Unit-test it in `tests/unit/launch-readiness.test.ts`: it lists unreviewed EN/IT values and placeholders, never flags French, and returns an empty list for clean data. Verify: `npm run test:unit` passes.
-- [ ] 4.2 Add `scripts/check-launch.ts` and the `check:launch` npm script. Integration-test it in `tests/unit/check-launch.test.ts` by running it against `tests/fixtures/text-blocks/{blocked,ready}/`. Verify: the blocked fixture exits non-zero and lists the items, the ready fixture exits zero, and `npm run check:launch` on the real data exits non-zero.
-- [ ] 4.3 Add `integrations/prelaunch.ts`, which warns on build start with the blockers and writes `dist/_headers` with `X-Robots-Tag: noindex, nofollow` while `!LAUNCHED`. Register it in `astro.config.mjs`. Verify: `npm run build` prints the warning, and `dist/_headers` contains the rule.
+- [x] 4.1 Add `src/config/site.ts` (`LAUNCHED = false`, canonical origin) and `src/lib/launch-readiness.ts` (`findBlockers`, pure, importing no Astro modules). Unit-test it in `tests/unit/launch-readiness.test.ts`: it lists unreviewed EN/IT values and placeholders, never flags French, and returns an empty list for clean data. Verify: `npm run test:unit` passes.
+- [x] 4.2 Add `scripts/check-launch.ts` and the `check:launch` npm script. Integration-test it in `tests/unit/check-launch.test.ts` by running it against `tests/fixtures/text-blocks/{blocked,ready}/`. Verify: the blocked fixture exits non-zero and lists the items, the ready fixture exits zero, and `npm run check:launch` on the real data exits non-zero.
+- [x] 4.3 Add `integrations/prelaunch.ts`, which warns on build start with the blockers and writes `dist/_headers` with `X-Robots-Tag: noindex, nofollow` while `!LAUNCHED`. Register it in `astro.config.mjs`. Verify: `npm run build` prints the warning, and `dist/_headers` contains the rule.
 
 ## 5. Design, layout and theme
 
