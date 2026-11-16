@@ -20,7 +20,7 @@ const fr = {
   "these.livrable": "Livrable",
   "these.soutenance": "Soutenance",
   "contact.heading": "Contact",
-  "contact.email": "Courriel",
+  "contact.email": "Courriel\u00a0:",
   "root.choose": "Choisir une langue",
 } as const;
 
@@ -46,7 +46,7 @@ export const ui = {
     "these.livrable": "Deliverable",
     "these.soutenance": "Defence",
     "contact.heading": "Contact",
-    "contact.email": "Email",
+    "contact.email": "Email:",
     "root.choose": "Choose a language",
   },
   it: {
@@ -67,7 +67,7 @@ export const ui = {
     "these.livrable": "Prodotto finale",
     "these.soutenance": "Discussione",
     "contact.heading": "Contatti",
-    "contact.email": "Email",
+    "contact.email": "Email:",
     "root.choose": "Scegli una lingua",
   },
 } as const satisfies Record<Language, Record<UiKey, string>>;
