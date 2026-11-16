@@ -22,7 +22,7 @@ describe("textBlockSchema", () => {
   });
 
   it("rejects a missing Language, naming the field", () => {
-    const { it: _missing, ...noItalian } = portrait.byline;
+    const noItalian = { fr: portrait.byline.fr, en: portrait.byline.en };
     expect(issuePaths({ ...portrait, byline: noItalian })).toContain("byline.it");
   });
 

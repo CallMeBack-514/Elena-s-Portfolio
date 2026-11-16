@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import prelaunch from "./integrations/prelaunch.ts";
 
 // Static-first: every page prerenders by default, and `output` stays
 // "static" (Astro removed the old "hybrid" mode in v5). When the Portal is
@@ -7,6 +8,7 @@ import { defineConfig } from "astro/config";
 // See specs/tech-stack.md and docs/adr/0003.
 export default defineConfig({
   output: "static",
+  integrations: [prelaunch()],
   // Intended free subdomain; confirm when the Cloudflare Pages project is
   // created, and keep in sync with SITE_ORIGIN in src/config/site.ts.
   site: "https://elena-meyer.pages.dev",

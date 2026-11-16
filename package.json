@@ -16,7 +16,8 @@
     "test:unit": "vitest run",
     "test:e2e": "playwright test tests/e2e",
     "test:invariants": "playwright test tests/invariants",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "check:launch": "node scripts/check-launch.ts"
   },
   "dependencies": {
     "astro": "7.4.12"
