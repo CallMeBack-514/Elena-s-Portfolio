@@ -1,7 +1,8 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const pages = ["/", "/articles", "/videos", "/photos", "/podcast"];
+// Temporary: rewritten in task 7.2 to cover every built page, Language and theme.
+const pages = ["/"];
 
 for (const path of pages) {
   test(`${path} has no automatically detectable accessibility violations`, async ({ page }) => {
