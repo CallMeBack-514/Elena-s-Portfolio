@@ -79,22 +79,23 @@
 
 ## 8. Hosting and docs
 
-- [ ] 8.1 Add a "Deploying" section to `README.md` covering:
+- [x] 8.1 Add a "Deploying" section to `README.md` covering:
   - the Cloudflare Pages Git-integration walkthrough (build command, output `dist`, Node from `.nvmrc`);
   - what preview URLs are;
   - noindex until launch;
   - `npm run check:launch`.
 
-  Verify: the Maintainer follows it, a PR gets a preview URL, and the preview serves `/fr/` with the `X-Robots-Tag` header (`curl -sI`).
+  Verify: the Maintainer follows it, a PR gets a preview URL, and the preview serves `/fr/` with the `X-Robots-Tag` header (`curl -sI`). _The section is written. Following it (connecting Cloudflare) moved to `/sdd-release`; see Workflow follow-up._
 
-- [ ] 8.2 If the Cloudflare project's address differs from `elena-meyer.pages.dev`, update `site` in `astro.config.mjs` and the origin in `src/config/site.ts`. Verify: the metadata e2e test still passes.
+_Task 8.2 (update the address if Cloudflare gives a different one) moved to `/sdd-release` with the Cloudflare setup; see Workflow follow-up._
 
 ## 9. Integration check
 
-- [ ] 9.1 Run the full local gate: `format:check`, `lint`, `typecheck`, `test:unit`, `build`, `test:e2e` and `test:invariants`. Then check the Cloudflare preview by hand on a phone in both themes and all three Languages. Verify: everything is green and no layout breaks.
+- [x] 9.1 Run the full local gate: `format:check`, `lint`, `typecheck`, `test:unit`, `build`, `test:e2e` and `test:invariants`. Then check the site by hand on a phone in both themes and all three Languages. Verify: everything is green and no layout breaks. _Done locally on 2026-11-17: the full gate is green, and the Maintainer tested `npm run preview` by hand, including a phone-width view. Checking the Cloudflare preview on a real phone moved to `/sdd-release`._
 
 ## Workflow follow-up
 
 - `/sdd-check`: open the PR, run CI, then Gate 2 and Gate 3.
 - `/sdd-ship`: manual test, verify invariant promotion, merge, archive this change.
+- `/sdd-release`: connect Cloudflare Pages by following README → Deploying, with step-by-step guidance (the Maintainer is new to Cloudflare). Update the address in `astro.config.mjs` and `src/config/site.ts` if it is not `elena-meyer.pages.dev` (was task 8.2). Check `/fr/` carries `X-Robots-Tag`, and test the deployed site on a real phone.
 - Do not launch. Going public is `/sdd-release` after 2b and Elena's review (`npm run check:launch` must pass).

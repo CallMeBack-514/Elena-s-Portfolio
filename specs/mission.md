@@ -111,7 +111,11 @@ Each step is its own feature through `/sdd-start`:
 1. **Constitution amendment**: this file, `tech-stack.md`,
    `threat-model.md`, `GLOSSARY.md` and the ADRs.
 2. **Public site**, in Elena's design, in FR/EN/IT, with her current content
-   built in. Includes the video cover and the theme toggle.
+   built in. Includes the video cover and the theme toggle. Split in two:
+   - **2a, site shell** (done, PR #11): design, Languages, theme toggle,
+     Main page with Elena's Text blocks, launch gate.
+   - **2b, Sections**: Section pages, Previews, Outlet filter, video
+     cover, Poem pages.
 3. **Portal core**: sign-in, Entries, Order, Draft/Published, Text blocks,
    rebuild on save, the 3-day scheduled rebuild. _Critical._
 4. **Photo uploads** for Series. _Critical._
