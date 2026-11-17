@@ -1,11 +1,49 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+// The bare address (spec: site-languages): sends the Visitor to the first
+// of their browser's languages we support, otherwise French. Without
+// JavaScript, it is a plain chooser with a link to each Language.
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { LAUNCHED, NAME, SITE_ORIGIN } from "../config/site";
+import { LANGUAGES } from "../lib/languages";
+import { LANGUAGE_NAMES } from "../i18n/ui";
 ---
 
-<BaseLayout title="Home">
-  <h1>Elena</h1>
-  <p>
-    Journalist covering [beat]. Articles, video, photography, and a podcast — curated here,
-    published on Substack, YouTube, and Spotify/Apple Podcasts.
-  </p>
-</BaseLayout>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {!LAUNCHED && <meta name="robots" content="noindex, nofollow" />}
+    <title>{NAME}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {LANGUAGES.map((l) => (
+      <link rel="alternate" hreflang={l} href={`${SITE_ORIGIN}/${l}/`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${SITE_ORIGIN}/`} />
+    <Font cssVariable="--font-mast" preload />
+    <Font cssVariable="--font-sans" />
+  </head>
+  <body>
+    <main class="wrap chooser">
+      <h1>{NAME}</h1>
+      <ul>
+        {LANGUAGES.map((lang) => (
+          <li>
+            <a href={`/${lang}/`} hreflang={lang} lang={lang}>
+              {LANGUAGE_NAMES[lang]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <SiteFooter />
+    <script>
+      import { pickLanguage } from "../lib/languages";
+      location.replace(`/${pickLanguage(navigator.languages)}/`);
+    </script>
+  </body>
+</html>

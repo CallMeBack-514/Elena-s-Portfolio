@@ -1,0 +1,49 @@
+{
+  "block": "collaborations",
+  "items": [
+    {
+      "outlet": "Radio-Canada",
+      "role": {
+        "fr": { "value": "Journaliste" },
+        "en": { "value": "Journalist", "reviewed": false },
+        "it": { "value": "Giornalista", "reviewed": false }
+      },
+      "years": "2024–"
+    },
+    {
+      "outlet": "Le Devoir",
+      "role": {
+        "fr": { "value": "Collaboratrice" },
+        "en": { "value": "Contributor", "reviewed": false },
+        "it": { "value": "Collaboratrice", "reviewed": false }
+      },
+      "years": "2025"
+    },
+    {
+      "outlet": "ICI RDI",
+      "role": {
+        "fr": { "value": "Télé" },
+        "en": { "value": "TV", "reviewed": false },
+        "it": { "value": "TV", "reviewed": false }
+      }
+    },
+    {
+      "outlet": "Festival Émergence",
+      "role": {
+        "fr": { "value": "Balado" },
+        "en": { "value": "Podcast", "reviewed": false },
+        "it": { "value": "Podcast", "reviewed": false }
+      },
+      "years": "2025"
+    },
+    {
+      "outlet": "CHOQ Radio",
+      "role": {
+        "fr": { "value": "Balado The Sleepwalker" },
+        "en": { "value": "The Sleepwalker podcast", "reviewed": false },
+        "it": { "value": "Podcast The Sleepwalker", "reviewed": false }
+      },
+      "years": "2022–2024"
+    }
+  ]
+}

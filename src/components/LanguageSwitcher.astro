@@ -1,0 +1,31 @@
+---
+// Links to the same page in the other Languages; the current one is marked
+// and not linked (spec: site-languages).
+import { LANGUAGES, type Language } from "../lib/languages";
+import { LANGUAGE_NAMES, t } from "../i18n/ui";
+
+interface Props {
+  lang: Language;
+  /** Path after the Language prefix, e.g. "" for the Main page. */
+  path: string;
+}
+const { lang, path } = Astro.props;
+---
+
+<nav class="langs" aria-label={t(lang, "lang.label")}>
+  <ul>
+    {LANGUAGES.map((other) => (
+      <li>
+        {other === lang ? (
+          <span aria-current="page" lang={other}>
+            {LANGUAGE_NAMES[other]}
+          </span>
+        ) : (
+          <a href={`/${other}/${path}`} hreflang={other} lang={other}>
+            {LANGUAGE_NAMES[other]}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

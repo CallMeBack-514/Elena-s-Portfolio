@@ -22,3 +22,6 @@ coverage/
 
 # claude code local overrides
 .claude/settings.local.json
+
+# Playwright MCP exploratory screenshots and snapshots
+.playwright-mcp/

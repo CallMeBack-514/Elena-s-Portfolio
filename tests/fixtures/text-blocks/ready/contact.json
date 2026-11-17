@@ -1,0 +1,14 @@
+{
+  "block": "contact",
+  "email": { "value": "elena@example.org" },
+  "links": [
+    {
+      "label": {
+        "fr": { "value": "Profil" },
+        "en": { "value": "Profile", "reviewed": true },
+        "it": { "value": "Profilo", "reviewed": true }
+      },
+      "url": "https://example.org/"
+    }
+  ]
+}

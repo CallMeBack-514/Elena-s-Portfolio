@@ -1,0 +1,22 @@
+{
+  "block": "contact",
+  "email": { "value": "contact@example.com", "placeholder": true },
+  "links": [
+    {
+      "label": {
+        "fr": { "value": "Profil Radio-Canada" },
+        "en": { "value": "Radio-Canada profile", "reviewed": false },
+        "it": { "value": "Profilo Radio-Canada", "reviewed": false }
+      },
+      "url": "https://ici.radio-canada.ca/profil/elena-meyer"
+    },
+    {
+      "label": {
+        "fr": { "value": "Page auteure Le Devoir" },
+        "en": { "value": "Le Devoir author page", "reviewed": false },
+        "it": { "value": "Pagina autrice Le Devoir", "reviewed": false }
+      },
+      "url": "https://www.ledevoir.com/auteur/elena-meyer"
+    }
+  ]
+}

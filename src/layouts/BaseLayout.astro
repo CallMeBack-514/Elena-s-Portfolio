@@ -1,40 +1,102 @@
 ---
+// The frame of every Visitor-facing page in one Language: head metadata
+// (spec: page-metadata, prelaunch-visibility), the dateline strip with the
+// Language switcher and theme toggle, masthead, Section nav and footer.
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { LAUNCHED, NAME, SITE_ORIGIN } from "../config/site";
+import { LANGUAGES, SECTIONS, type Language } from "../lib/languages";
+import { inLang, textBlock } from "../lib/content";
+import { sectionName, t } from "../i18n/ui";
+
 interface Props {
-  title: string;
+  lang: Language;
+  /** Path after the Language prefix, e.g. "" for the Main page. */
+  path: string;
+  /** Page title; the site name is appended unless this is the Main page. */
+  title?: string;
   description?: string;
 }
 
-const { title, description = "Elena — journalist: articles, video, photography, podcast." } =
-  Astro.props;
+const { lang, path, title, description } = Astro.props;
+const site = await textBlock("site");
+
+const pageTitle = title ? `${title} · ${NAME}` : `${NAME} · ${inLang(site.tagline, lang)}`;
+const pageDescription = description ?? inLang(site.description, lang);
+const urlFor = (l: Language) => `${SITE_ORIGIN}/${l}/${path}`;
+const OG_LOCALE: Record<Language, string> = { fr: "fr_CA", en: "en_CA", it: "it_IT" };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {!LAUNCHED && <meta name="robots" content="noindex, nofollow" />}
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content={description} />
-    <title>{title} · Elena</title>
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="canonical" href={urlFor(lang)} />
+    {LANGUAGES.map((l) => (
+      <link rel="alternate" hreflang={l} href={urlFor(l)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${SITE_ORIGIN}/`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={NAME} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
+    {LANGUAGES.filter((l) => l !== lang).map((l) => (
+      <meta property="og:locale:alternate" content={OG_LOCALE[l]} />
+    ))}
+    <meta property="og:url" content={urlFor(lang)} />
+    <meta property="og:image" content={`${SITE_ORIGIN}/og-card.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${NAME} · ${site.location.value}`} />
+    <Font cssVariable="--font-mast" preload />
+    <Font cssVariable="--font-serif" preload={[{ weight: "400", style: "normal" }]} />
+    <Font cssVariable="--font-sans" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="/">
-        Elena
-      </a>
-      <nav aria-label="Primary">
-        <a href="/articles">Articles</a>
-        <a href="/videos">Videos</a>
-        <a href="/photos">Photos</a>
-        <a href="/podcast">Podcast</a>
-      </nav>
+    <header>
+      <div class="strip">
+        <div class="wrap">
+          <span>{site.location.value}</span>
+          <div class="strip-tools">
+            <LanguageSwitcher lang={lang} path={path} />
+            <ThemeToggle lang={lang} />
+          </div>
+        </div>
+      </div>
+      <div class="mast">
+        <div class="wrap">
+          <h1>{NAME}</h1>
+          <p class="motto">{inLang(site.tagline, lang)}</p>
+        </div>
+      </div>
     </header>
+    <nav class="nav" aria-label={t(lang, "nav.label")}>
+      <div class="wrap">
+        <div>
+          <ul>
+            {SECTIONS.map((section) => (
+              <li>
+                <a href={`#${section}`}>{sectionName(lang, section)}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
     <main>
       <slot />
     </main>
-    <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} Elena</p>
-    </footer>
+    <SiteFooter />
   </body>
 </html>

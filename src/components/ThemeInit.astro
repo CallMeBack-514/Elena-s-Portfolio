@@ -1,0 +1,14 @@
+---
+// Applies a saved theme before first paint (spec: site-theme), so a page
+// never flashes the other theme. Inline on purpose: a bundled module script
+// is deferred and would run after the first paint. Place it first in <head>.
+---
+
+<script is:inline>
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+  } catch {
+    // Storage blocked: follow the device setting.
+  }
+</script>

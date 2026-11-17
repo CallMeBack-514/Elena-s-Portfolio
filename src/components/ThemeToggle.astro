@@ -1,0 +1,57 @@
+---
+// Two-state light/dark override, saved on this device (spec: site-theme).
+// Rendered hidden so it never shows without JavaScript; the script below
+// reveals it and keeps its accessible name in sync with the theme.
+import type { Language } from "../lib/languages";
+import { t } from "../i18n/ui";
+
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  hidden
+  data-to-dark={t(lang, "theme.toDark")}
+  data-to-light={t(lang, "theme.toLight")}
+>
+  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+    <path d="M8 1a7 7 0 0 0 0 14z" fill="currentColor"></path>
+  </svg>
+</button>
+
+<script>
+  type Theme = "light" | "dark";
+  const root = document.documentElement;
+  const dark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function current(): Theme {
+    const set = root.dataset.theme;
+    if (set === "light" || set === "dark") return set;
+    return dark.matches ? "dark" : "light";
+  }
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".theme-toggle")) {
+    const label = () => {
+      const name = current() === "dark" ? button.dataset.toLight : button.dataset.toDark;
+      button.setAttribute("aria-label", name ?? "");
+    };
+    button.addEventListener("click", () => {
+      const next: Theme = current() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Storage blocked: the switch still applies to this page.
+      }
+      label();
+    });
+    dark.addEventListener("change", label);
+    label();
+    button.hidden = false;
+  }
+</script>

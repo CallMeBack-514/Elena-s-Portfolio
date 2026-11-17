@@ -1,0 +1,28 @@
+{
+  "block": "portrait",
+  "heading": {
+    "fr": { "value": "Journaliste multiplateforme à Radio-Canada, à Toronto" },
+    "en": { "value": "Multiplatform journalist at Radio-Canada, in Toronto", "reviewed": false },
+    "it": { "value": "Giornalista multipiattaforma a Radio-Canada, a Toronto", "reviewed": false }
+  },
+  "bio": [
+    {
+      "fr": {
+        "value": "À Radio-Canada depuis 2024. Collaboratrice au Devoir, voix de balados à Montréal et chercheuse en journalisme à l'Université Concordia, où elle prépare un documentaire audio participatif sur la scène rave."
+      },
+      "en": {
+        "value": "At Radio-Canada since 2024. Contributor to Le Devoir, podcast voice in Montréal and journalism researcher at Concordia University, where she is preparing a participatory audio documentary on the rave scene.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "A Radio-Canada dal 2024. Collaboratrice di Le Devoir, voce di podcast a Montréal e ricercatrice in giornalismo alla Concordia University, dove prepara un documentario audio partecipativo sulla scena rave.",
+        "reviewed": false
+      }
+    }
+  ],
+  "byline": {
+    "fr": { "value": "Par Elena Meyer · Toronto" },
+    "en": { "value": "By Elena Meyer · Toronto", "reviewed": false },
+    "it": { "value": "Di Elena Meyer · Toronto", "reviewed": false }
+  }
+}

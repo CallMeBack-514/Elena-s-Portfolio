@@ -13,10 +13,11 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run tests/unit",
     "test:e2e": "playwright test tests/e2e",
-    "test:invariants": "playwright test tests/invariants",
-    "typecheck": "astro check"
+    "test:invariants": "vitest run tests/invariants && playwright test tests/invariants",
+    "typecheck": "astro check",
+    "check:launch": "node scripts/check-launch.ts"
   },
   "dependencies": {
     "astro": "7.4.12"
