@@ -117,20 +117,27 @@
   `localStorage` inside `try/catch` and always updates `data-theme` on the
   current page.
 
-### Fonts: Astro's built-in fonts with the Fontsource provider
+### Fonts: Astro's built-in fonts with committed files (local provider)
 
 - `astro.config.mjs` `fonts: [...]` registers each family with
-  `fontProviders.fontsource()`. The weights and styles follow the mockup:
+  `fontProviders.local()`, pointing at `.woff2` files committed under
+  `src/assets/fonts/` together with their SIL Open Font License texts. The
+  weights and styles follow the mockup:
   - Caslon Display 400;
-  - Newsreader 400–700 plus italic 400/500;
+  - Newsreader 400–700 plus italic 400–700;
   - Franklin 400–700.
 
-  The subset is `latin`, which covers French and Italian accents.
   `<Font cssVariable=… preload />` in the layout preloads only the masthead
   and body faces.
 
-- Astro downloads the files at build time and serves them from `/_astro/`,
-  which satisfies `external-resources`.
+- Astro serves the files from `/_astro/fonts/`, which satisfies
+  `external-resources`. The build needs no network.
+- **Changed during `/sdd-check`:** the first design used
+  `fontProviders.fontsource()`, which downloads at build time. CI's first
+  run on PR #11 failed when a Fontsource CDN fetch failed
+  (`CannotFetchFontFile`). This was the risk listed below, so its planned
+  mitigation was applied: the same files (Fontsource 5.3.0, latin subset)
+  are now committed.
 - **Alternative rejected:** pinned `@fontsource/*` packages. That's three
   more dependencies to pin and bump for the same result.
 
@@ -212,11 +219,10 @@
 
 ## Risks / Trade-offs
 
-- **[Risk]** The Fontsource provider downloads at build time, so a
-  Fontsource outage fails CI and Cloudflare builds. → **Mitigation:** Astro
-  caches the downloads between local builds. If this proves flaky, switch to
-  `fontProviders.local()` with committed `.woff2` files. That's a config
-  change with no page changes.
+- **[Risk, happened]** The Fontsource provider downloaded at build time, so a
+  CDN failure broke the first CI run. → **Mitigated:** fonts are committed
+  and use `fontProviders.local()`, so the build is fully offline. The cost
+  is about 300 KB of binaries in git, updated by hand if the fonts change.
 - **[Risk]** The inline theme script runs before CSP is considered. There is
   no CSP today, but adding one later needs a hash for this script.
   → **Mitigation:** note it in `specs/threat-model.md` when CSP is

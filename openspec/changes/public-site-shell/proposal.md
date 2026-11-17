@@ -100,8 +100,10 @@ None. `openspec/specs/` is empty.
     every Language and both themes.
   - New invariants for Language completeness and third-party resources.
 - **Dependencies:** none new. Fonts use Astro 7's built-in font support with
-  its Fontsource provider, which downloads at build time, so CI needs network
-  access during `npm run build`.
+  its local provider, and the font files are committed under
+  `src/assets/fonts/` with their SIL Open Font License texts. This was
+  changed from the Fontsource provider during `/sdd-check`, after a CDN
+  fetch failure broke CI; see design.md.
 - **Systems:** a Cloudflare Pages project connected to the GitHub repo. This
   is a manual dashboard step for the Maintainer, with a written walkthrough.
 - **Content:** the EN and IT translations are drafts that Elena must review
