@@ -29,6 +29,17 @@ describe("findBlockers", () => {
     ]);
   });
 
+  it("treats an English or Italian value with no reviewed flag as unreviewed", () => {
+    // check:launch reads the raw files without the schema, so it must not
+    // depend on the schema having rejected a missing flag.
+    const blocks = [
+      { block: "site", tagline: { fr: { value: "L" }, en: { value: "L" }, it: reviewed("L") } },
+    ];
+    expect(findBlockers(blocks)).toEqual([
+      { block: "site", path: "tagline.en", reason: "unreviewed" },
+    ]);
+  });
+
   it("lists placeholder values", () => {
     const blocks = [{ block: "contact", email: { value: "x@example.com", placeholder: true } }];
     expect(findBlockers(blocks)).toEqual([

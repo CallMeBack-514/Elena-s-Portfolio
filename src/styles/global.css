@@ -470,7 +470,7 @@ footer p {
 
 /* Bare-address Language chooser */
 .chooser {
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
   place-content: center;
   text-align: center;

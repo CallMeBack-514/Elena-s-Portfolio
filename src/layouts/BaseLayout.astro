@@ -7,6 +7,7 @@ import { Font } from "astro:assets";
 import ThemeInit from "../components/ThemeInit.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import { LAUNCHED, NAME, SITE_ORIGIN } from "../config/site";
 import { LANGUAGES, SECTIONS, type Language } from "../lib/languages";
 import { inLang, textBlock } from "../lib/content";
@@ -96,14 +97,6 @@ const OG_LOCALE: Record<Language, string> = { fr: "fr_CA", en: "en_CA", it: "it_
     <main>
       <slot />
     </main>
-    <footer>
-      <div class="wrap">
-        <div>
-          <p>
-            © {new Date().getFullYear()} {NAME}
-          </p>
-        </div>
-      </div>
-    </footer>
+    <SiteFooter />
   </body>
 </html>

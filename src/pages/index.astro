@@ -5,6 +5,7 @@
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import ThemeInit from "../components/ThemeInit.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import { LAUNCHED, NAME, SITE_ORIGIN } from "../config/site";
 import { LANGUAGES } from "../lib/languages";
 import { LANGUAGE_NAMES } from "../i18n/ui";
@@ -39,6 +40,7 @@ import { LANGUAGE_NAMES } from "../i18n/ui";
         ))}
       </ul>
     </main>
+    <SiteFooter />
     <script>
       import { pickLanguage } from "../lib/languages";
       location.replace(`/${pickLanguage(navigator.languages)}/`);

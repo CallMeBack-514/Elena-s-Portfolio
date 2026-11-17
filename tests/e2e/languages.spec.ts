@@ -28,6 +28,10 @@ test.describe("bare address without JavaScript", () => {
     ]) {
       await expect(page.getByRole("link", { name })).toHaveAttribute("href", href);
     }
+    // Still a Visitor-facing page, so it carries the footer (spec: main-page).
+    await expect(page.getByRole("contentinfo")).toHaveText(
+      `© ${new Date().getFullYear()} Elena Meyer`,
+    );
   });
 });
 

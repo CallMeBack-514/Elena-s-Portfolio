@@ -30,7 +30,9 @@ function walk(node: Json, path: string[], block: string, found: Blocker[]): void
   }
   for (const [key, child] of Object.entries(node)) {
     const isTranslation = (key === "en" || key === "it") && isRecord(child);
-    if (isTranslation && child.reviewed === false) {
+    // Anything short of an explicit `reviewed: true` blocks: this reads raw
+    // files, so it cannot rely on the schema having rejected a missing flag.
+    if (isTranslation && child.reviewed !== true) {
       found.push({ block, path: [...path, key].join("."), reason: "unreviewed" });
       continue;
     }
