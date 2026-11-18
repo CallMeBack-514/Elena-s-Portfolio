@@ -32,9 +32,9 @@
 
 ## 3. Seed content
 
-- [ ] 3.1 From Elena's public Le Devoir and Radio-Canada author pages, list every Article. For each one, record its Work title, Outlet, date, URL and Original language from the Article's own page. Write them to `src/data/entries/articles.json`, newest first as Order 1…n, all `status: "published"`. Verify: `npm run build` passes. The PR description will list every Article, so Elena can check it.
-- [ ] 3.2 Draft a one- or two-sentence FR/EN/IT Description for each Article from its public standfirst, all marked `reviewed: false`. Verify: `npm run check:launch` lists every new Description, in all three Languages.
-- [ ] 3.3 Download each Article's `og:image` once with `curl` into `src/assets/entries/articles/<id>.<ext>`. Re-encode any file over 400 kB to a 1600 px-wide JPEG at quality 82, and reference it in `image`. Articles whose image is missing or fails to download get none, and are listed for the PR. No script is committed. Verify: `npm run build` passes (`image()` rejects missing files), and `git ls-files scripts` shows no new file.
+- [x] 3.1 From Elena's public Le Devoir and Radio-Canada author pages, list every Article. For each one, record its Work title, Outlet, date, URL and Original language from the Article's own page. Write them to `src/data/entries/articles.json`, newest first as Order 1…n, all `status: "published"`. Verify: `npm run build` passes. The PR description will list every Article, so Elena can check it.
+- [x] 3.2 Draft a one- or two-sentence FR/EN/IT Description for each Article from its public standfirst, all marked `reviewed: false`. Verify: `npm run check:launch` lists every new Description, in all three Languages.
+- [x] 3.3 Download each Article's `og:image` once with `curl` into `src/assets/entries/articles/<id>.<ext>`. Re-encode any file over 400 kB to a 1600 px-wide JPEG at quality 82, and reference it in `image`. Articles whose image is missing or fails to download get none, and are listed for the PR. No script is committed. Verify: `npm run build` passes (`image()` rejects missing files), and `git ls-files scripts` shows no new file.
 
 ## 4. Card
 
