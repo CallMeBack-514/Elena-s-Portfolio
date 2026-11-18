@@ -86,5 +86,5 @@ When Published Articles come from at least two Outlets, the Articles page and ev
 #### Scenario: Single Outlet
 
 - **GIVEN** every Published Article comes from one Outlet
-- **WHEN** a Visitor opens `/fr/articles/`
-- **THEN** no filter links are shown
+- **WHEN** the site is built and a Visitor opens `/fr/articles/`
+- **THEN** no filter links are shown, and no `/{lang}/articles/{outlet}/` page exists
