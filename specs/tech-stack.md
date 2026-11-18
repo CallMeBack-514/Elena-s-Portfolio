@@ -82,8 +82,9 @@ reset Elena's password from the Supabase dashboard.
   platform's player (YouTube, or Radio-Canada's if it allows embedding)
   loads only on click. Since ADR-0009 the cover exists for page weight, not
   privacy; build step 2b-2 decides whether to keep it. Whether Radio-Canada's
-  player embeds is checked in build step 2b-2; if it doesn't, Clips are
-  Cards linking to Radio-Canada.
+  player embeds is checked in build step 2b-2; if it doesn't, the Clip's
+  Card still links to its Detail page, which links to the Clip on
+  Radio-Canada instead of playing it.
 - **Images** (Entry images, including Outlets' share images): stored by us
   and never hotlinked (ADR-0010); the build generates the served sizes
   with Astro's image tooling.

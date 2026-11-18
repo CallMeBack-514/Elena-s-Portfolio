@@ -32,7 +32,7 @@ The single page per Language that shows every Section's Preview and Elena's Text
 _Avoid_: home, landing page, index
 
 **Preview**:
-The first Published Entries of a Section shown as Cards on the Main page, in Elena's Order: three per Section, or the first of each Subsection in Art.
+The first Published Entries of a Section shown as Cards on the Main page, in Elena's Order: three per Section, or the first of each Subsection in Art. Thèse has no Entries, so its Preview is the research question from its Text block, linking to its page.
 _Avoid_: featured, highlights, teaser
 
 **Card**:
