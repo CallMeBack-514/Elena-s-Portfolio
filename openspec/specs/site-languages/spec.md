@@ -70,11 +70,11 @@ All interface text on a page (nav labels, Section names, "coming soon", footer a
 #### Scenario: Section names per Language
 
 - **WHEN** a Visitor views the nav on `/fr/`, `/en/` and `/it/`
-- **THEN** the Balados Section is labelled "Balados", "Podcasts" and "Podcast" respectively, and links to `#balados` in all three
+- **THEN** the Balados Section is labelled "Balados", "Podcasts" and "Podcast" respectively, and links to `/fr/balados/`, `/en/balados/` and `/it/balados/`
 
 ### Requirement: Elena's own text must exist in every Language
 
-Every Text block field that holds Elena's prose SHALL have a non-empty value in French, English and Italian. If any is missing, the build SHALL fail; it never falls back to another Language (ADR-0006).
+Every Text block field that holds Elena's prose, and every Entry's Description, SHALL have a non-empty value in French, English and Italian. If any is missing, the build SHALL fail; it never falls back to another Language (ADR-0006).
 
 #### Scenario: Missing Italian bio fails the build (invariant)
 
@@ -82,8 +82,14 @@ Every Text block field that holds Elena's prose SHALL have a non-empty value in 
 - **WHEN** the site is built
 - **THEN** the build fails with an error naming the Text block, the field and the missing Language
 
+#### Scenario: Missing English Description fails the build (invariant)
+
+- **GIVEN** an Article whose English Description is empty or absent
+- **WHEN** the site is built
+- **THEN** the build fails with an error naming the Article, the Description and the missing Language
+
 #### Scenario: Complete Text blocks build
 
-- **GIVEN** every Text block field has values in all three Languages
+- **GIVEN** every Text block field and every Entry Description has values in all three Languages
 - **WHEN** the site is built
 - **THEN** the build succeeds

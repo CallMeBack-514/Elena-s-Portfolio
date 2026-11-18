@@ -18,15 +18,6 @@ The Main page SHALL open with a masthead showing Elena's name as the page's only
 - **WHEN** a Visitor opens `/en/`
 - **THEN** the only level-1 heading is "Elena Meyer", followed by the English tagline and "Toronto · Montréal"
 
-### Requirement: Section nav links to parts of the Main page
-
-The Main page SHALL have a nav labelled for assistive technology. It links to the anchors `#articles`, `#tele`, `#balados`, `#these` and `#art` on the same page, in that order, with Section names in the page's Language.
-
-#### Scenario: Every nav link lands on its part
-
-- **WHEN** a Visitor follows each nav link on `/it/`
-- **THEN** each one scrolls to an element with the matching id, whose heading is that Section's Italian name
-
 ### Requirement: Portrait and bio
 
 The Main page SHALL show the portrait Text block: a heading, the bio paragraphs and the byline in the page's Language. When a portrait photo is recorded it is shown with alt text in that Language; when none is recorded the part shows text only.
@@ -52,23 +43,14 @@ The Main page SHALL show the Collaborations Text block as a list in Elena's reco
 - **WHEN** a Visitor opens `/fr/`
 - **THEN** a "Collaborations" list shows Radio-Canada, Le Devoir, ICI RDI, Festival Émergence and CHOQ Radio in that order, each with its role and years
 
-### Requirement: Thèse is shown in full
-
-The Main page's Thèse part SHALL show the Thèse Text block in the page's Language: the programme, the research question as a quotation, and the labelled fields Terrain, Cadre, Livrable and Soutenance.
-
-#### Scenario: Thèse in English
-
-- **WHEN** a Visitor opens `/en/` and goes to `#these`
-- **THEN** the research question is shown as a quotation followed by four labelled fields with English labels and values
-
 ### Requirement: Sections without content say "coming soon"
 
-Each Section with no Published Entries (in 2a: Articles, Télé, Balados and Art) SHALL still appear on the Main page with its heading and anchor, plus a short "coming soon" note in the page's Language.
+Each Section with no Published Entries (in 2b-1: Télé, Balados and Art) SHALL still have its block on the Main page with its heading and anchor, plus a short "coming soon" note in the page's Language and a link to its Section page.
 
 #### Scenario: Empty Section in Italian
 
 - **WHEN** a Visitor opens `/it/` and goes to `#tele`
-- **THEN** they see the heading "TV" and an Italian "coming soon" note, and no empty list
+- **THEN** they see the heading "TV", an Italian "coming soon" note and a link to `/it/tele/`, and no empty list
 
 ### Requirement: Contact
 
@@ -97,3 +79,28 @@ The Main page SHALL be fully usable at a 360-pixel-wide viewport without horizon
 - **GIVEN** a 360 × 740 viewport
 - **WHEN** a Visitor opens `/en/`
 - **THEN** the document is no wider than the viewport, and the nav, switcher and theme toggle are all reachable
+
+### Requirement: One block per Section with its Preview
+
+The Main page SHALL show one block per Section, in nav order, between the portrait part and Contact. Each block has the Section's heading and anchor id. A Section with Published Entries shows its Preview, which is its first three Published Entries in Elena's Order, as Cards. A link labelled "Tout voir →" in the page's Language leads to the Section page.
+
+#### Scenario: Articles Preview in French
+
+- **GIVEN** five Published Articles with Orders 1 to 5
+- **WHEN** a Visitor opens `/fr/` and goes to `#articles`
+- **THEN** the Articles block shows the Cards for Orders 1, 2 and 3 only, followed by a "Tout voir →" link to `/fr/articles/`
+
+#### Scenario: Fewer than three Entries
+
+- **GIVEN** a Section with exactly one Published Entry
+- **WHEN** a Visitor opens the Main page
+- **THEN** that block shows one Card and its "Tout voir →" link, and no empty slots
+
+### Requirement: Thèse block links to its page
+
+The Main page's Thèse block SHALL show the research question from the Thèse Text block as a quotation in the page's Language. A link, labelled in that Language, leads to the Thèse page.
+
+#### Scenario: Thèse block in Italian
+
+- **WHEN** a Visitor opens `/it/` and goes to `#these`
+- **THEN** the Italian research question is shown as a quotation, followed by a link to `/it/these/`, and the Terrain, Cadre, Livrable and Soutenance fields are not on the Main page
