@@ -106,6 +106,10 @@ describe("outletSlug", () => {
     );
   });
 
+  it("fails when an Outlet name gives an empty path", () => {
+    expect(() => assertDistinctOutletSlugs(["Le Devoir", "東京新聞"])).toThrow(/東京新聞/);
+  });
+
   it("accepts the same Outlet named twice", () => {
     expect(() => assertDistinctOutletSlugs(["Le Devoir", "Le Devoir"])).not.toThrow();
   });

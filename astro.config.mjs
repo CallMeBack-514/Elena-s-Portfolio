@@ -19,6 +19,10 @@ function localVariants(slug, weights, styles) {
 
 export default defineConfig({
   output: "static",
+  // Fail, not warn, when two pages or two Entries claim the same path or id.
+  // Under "warn", the file() loader keeps the last Article with a repeated
+  // id and silently drops the other.
+  prerenderConflictBehavior: "error",
   integrations: [prelaunch()],
   // Intended free subdomain; confirm when the Cloudflare Pages project is
   // created, and keep in sync with SITE_ORIGIN in src/config/site.ts.

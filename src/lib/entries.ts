@@ -63,11 +63,19 @@ export function outletSlug(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-/** Fails when two differently written Outlet names share a slug. */
+/**
+ * Fails when an Outlet name gives no path (no Latin letters or digits), or
+ * when two differently written names share one.
+ */
 export function assertDistinctOutletSlugs(names: readonly string[]): void {
   const seen = new Map<string, string>();
   for (const name of names) {
     const slug = outletSlug(name);
+    if (slug === "") {
+      throw new Error(
+        `Outlet "${name}" gives an empty path: spell it with Latin letters or digits`,
+      );
+    }
     const other = seen.get(slug);
     if (other !== undefined && other !== name) {
       throw new Error(

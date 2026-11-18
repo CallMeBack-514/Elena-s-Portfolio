@@ -22,7 +22,9 @@ describe("formatDate", () => {
     try {
       expect(formatDate("2026-01-01", "en")).toBe("January 1, 2026");
     } finally {
-      process.env.TZ = zone;
+      // Assigning undefined would store the string "undefined".
+      if (zone === undefined) delete process.env.TZ;
+      else process.env.TZ = zone;
     }
   });
 });

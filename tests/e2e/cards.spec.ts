@@ -44,7 +44,9 @@ test("a French Article is marked lang=fr, with an FR badge on /en/ and none on /
   page,
 }) => {
   const french = publishedArticles().find((a) => a.originalLanguage === "fr");
-  test.skip(!french, "no French Article in the data");
+  // Asserted, not skipped (AGENTS.md: no skip without an issue). If Elena's
+  // data ever has no French Article, give this test a fixture instead.
+  expect(french, "the real data has no French Article: use a fixture").toBeDefined();
   await page.goto("/en/articles/");
   const card = cardOf(page, french!.workTitle);
   await expect(card.locator(".card-title-text")).toHaveAttribute("lang", "fr");
@@ -55,7 +57,9 @@ test("a French Article is marked lang=fr, with an FR badge on /en/ and none on /
 
 test("an Article without an image shows a 3:2 placeholder and no image", async ({ page }) => {
   const imageless = publishedArticles().find((a) => !a.image);
-  test.skip(!imageless, "every Article has an image");
+  // Asserted, not skipped (AGENTS.md: no skip without an issue). If every
+  // Article gets an image, give this test a fixture instead.
+  expect(imageless, "every Article now has an image: use a fixture").toBeDefined();
   await page.goto("/fr/articles/");
   const card = cardOf(page, imageless!.workTitle);
   await expect(card.locator(".card-placeholder")).toBeVisible();
