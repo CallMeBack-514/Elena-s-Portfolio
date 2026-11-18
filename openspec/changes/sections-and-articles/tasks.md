@@ -101,7 +101,7 @@
 
 ## 7. Theme fix (issue #15)
 
-- [ ] 7.1 In `ThemeToggle.astro`, when `setItem` throws, try `removeItem("theme")`. Add the "Saving fails after an earlier choice" scenario to `tests/e2e/theme.spec.ts` (seed `theme=light`, stub `setItem` to throw, toggle, open another page, and expect the device's dark theme with no page error). Verify: `npm run test:e2e` passes. Close #15 from the PR description.
+- [x] 7.1 In `ThemeToggle.astro`, when `setItem` throws, try `removeItem("theme")`. Add the "Saving fails after an earlier choice" scenario to `tests/e2e/theme.spec.ts` (seed `theme=light`, stub `setItem` to throw, toggle, open another page, and expect the device's dark theme with no page error). Verify: `npm run test:e2e` passes. Close #15 from the PR description.
 
 ## 8. Invariants
 
