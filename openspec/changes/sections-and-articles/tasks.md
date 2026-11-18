@@ -27,8 +27,8 @@
 
 ## 2. Interface strings and formatting
 
-- [ ] 2.1 Add these keys to `src/i18n/ui.ts`, in all three Languages: `seeAll`, `readMore`, `filter.label`, `filter.all`, `menu.open`, `menu.close`, `card.externalSite` (with an `{outlet}` slot) and `section.<id>.description`. Verify: `npm run typecheck` passes.
-- [ ] 2.2 Add `formatDate(date, lang)` to `src/lib/format.ts` (`dateStyle: "long"`, `timeZone: "UTC"`). Unit-test 2026-03-12 → "12 mars 2026" / "March 12, 2026" / "12 marzo 2026" in `tests/unit/format.test.ts`. Verify: `npm run test:unit` passes.
+- [x] 2.1 Add these keys to `src/i18n/ui.ts`, in all three Languages: `seeAll`, `readMore`, `filter.label`, `filter.all`, `menu.open`, `menu.close`, `card.externalSite` (with an `{outlet}` slot) and `section.<id>.description`. Verify: `npm run typecheck` passes.
+- [x] 2.2 Add `formatDate(date, lang)` to `src/lib/format.ts` (`dateStyle: "long"`, `timeZone: "UTC"`). Unit-test 2026-03-12 → "12 mars 2026" / "March 12, 2026" / "12 marzo 2026" in `tests/unit/format.test.ts`. Verify: `npm run test:unit` passes.
 
 ## 3. Seed content
 

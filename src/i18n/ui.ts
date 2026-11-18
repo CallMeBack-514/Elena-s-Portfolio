@@ -22,6 +22,19 @@ const fr = {
   "contact.heading": "Contact",
   "contact.email": "Courriel\u00a0:",
   "root.choose": "Choisir une langue",
+  seeAll: "Tout voir",
+  readMore: "Lire la suite",
+  "filter.label": "Filtrer par média",
+  "filter.all": "Tous",
+  "menu.open": "Ouvrir le menu",
+  "menu.close": "Fermer le menu",
+  "card.externalSite": "(site {outlet})",
+  "section.articles.description":
+    "Les articles d'Elena Meyer, publiés dans Le Devoir, à Radio-Canada et ailleurs.",
+  "section.tele.description": "Les reportages télé d'Elena Meyer.",
+  "section.balados.description": "Les balados d'Elena Meyer, animatrice et productrice.",
+  "section.these.description": "La recherche de maîtrise en journalisme d'Elena Meyer à Concordia.",
+  "section.art.description": "Les portraits, poèmes et textes Substack d'Elena Meyer.",
 } as const;
 
 type UiKey = keyof typeof fr;
@@ -48,6 +61,19 @@ export const ui = {
     "contact.heading": "Contact",
     "contact.email": "Email:",
     "root.choose": "Choose a language",
+    seeAll: "See all",
+    readMore: "Read more",
+    "filter.label": "Filter by outlet",
+    "filter.all": "All",
+    "menu.open": "Open menu",
+    "menu.close": "Close menu",
+    "card.externalSite": "({outlet} website)",
+    "section.articles.description":
+      "Elena Meyer's articles, published in Le Devoir, on Radio-Canada and elsewhere.",
+    "section.tele.description": "Elena Meyer's TV reports.",
+    "section.balados.description": "Podcasts hosted and produced by Elena Meyer.",
+    "section.these.description": "Elena Meyer's M.A. journalism research at Concordia.",
+    "section.art.description": "Elena Meyer's portraits, poems and Substack writing.",
   },
   it: {
     "nav.label": "Sezioni",
@@ -69,11 +95,29 @@ export const ui = {
     "contact.heading": "Contatti",
     "contact.email": "Email:",
     "root.choose": "Scegli una lingua",
+    seeAll: "Vedi tutto",
+    readMore: "Continua a leggere",
+    "filter.label": "Filtra per testata",
+    "filter.all": "Tutti",
+    "menu.open": "Apri il menu",
+    "menu.close": "Chiudi il menu",
+    "card.externalSite": "(sito {outlet})",
+    "section.articles.description":
+      "Gli articoli di Elena Meyer, pubblicati su Le Devoir, Radio-Canada e altrove.",
+    "section.tele.description": "I servizi televisivi di Elena Meyer.",
+    "section.balados.description": "I podcast condotti e prodotti da Elena Meyer.",
+    "section.these.description":
+      "La ricerca magistrale in giornalismo di Elena Meyer alla Concordia.",
+    "section.art.description": "I ritratti, le poesie e i testi Substack di Elena Meyer.",
   },
 } as const satisfies Record<Language, Record<UiKey, string>>;
 
 export function t(lang: Language, key: UiKey): string {
   return ui[lang][key];
+}
+
+export function sectionDescription(lang: Language, section: Section): string {
+  return ui[lang][`section.${section}.description`];
 }
 
 export function sectionName(lang: Language, section: Section): string {
