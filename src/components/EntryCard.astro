@@ -21,37 +21,35 @@ const Heading = `h${level}` as const;
 
 <article class="card">
   <div class="card-media">
-    {
-      card.image ? (
-        <Picture
-          src={card.image}
-          formats={["avif", "webp"]}
-          widths={[400, 800]}
-          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 400px"
-          alt=""
-          loading={eager ? "eager" : "lazy"}
-        />
-      ) : (
-        <div class="card-placeholder" aria-hidden="true">
-          <span>{card.placeholder}</span>
-        </div>
-      )
-    }
+    {card.image ? (
+      <Picture
+        src={card.image}
+        formats={["avif", "webp"]}
+        widths={[400, 800]}
+        sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 400px"
+        alt=""
+        loading={eager ? "eager" : "lazy"}
+      />
+    ) : (
+      <div class="card-placeholder" aria-hidden="true">
+        <span>{card.placeholder}</span>
+      </div>
+    )}
   </div>
   <p class="kicker">{card.kicker}</p>
   <Heading class="card-title">
     <a href={card.href}>
-      <span class="card-title-text" lang={card.titleLang}>{card.title}</span>
-      {
-        card.externalOutlet && (
-          <>
-            <span class="card-arrow" aria-hidden="true">
-              ↗
-            </span>
-            <span class="visually-hidden">{externalSiteText(lang, card.externalOutlet)}</span>
-          </>
-        )
-      }
+      <span class="card-title-text" lang={card.titleLang}>
+        {card.title}
+      </span>
+      {card.externalOutlet && (
+        <>
+          <span class="card-arrow" aria-hidden="true">
+            ↗
+          </span>
+          <span class="visually-hidden">{externalSiteText(lang, card.externalOutlet)}</span>
+        </>
+      )}
     </a>
   </Heading>
   <p class="card-desc">{card.description}</p>
