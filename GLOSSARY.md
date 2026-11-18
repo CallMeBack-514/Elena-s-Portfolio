@@ -32,8 +32,16 @@ The single page per Language that shows every Section's Preview and Elena's Text
 _Avoid_: home, landing page, index
 
 **Preview**:
-The first Published Entries of a Section shown on the Main page, in Elena's Order: three per Section, or the first of each Subsection in Art.
+The first Published Entries of a Section shown as Cards on the Main page, in Elena's Order: three per Section, or the first of each Subsection in Art.
 _Avoid_: featured, highlights, teaser
+
+**Card**:
+How an Entry is shown in a list: its image (or a placeholder), a kicker, the Work title, the Description, and the Outlet and date. It links to the Entry's Detail page, or, for an Article, to the Outlet.
+_Avoid_: tile, teaser, thumbnail (for the whole Card)
+
+**Detail page**:
+The page of a single Entry. Every Entry has one except an Article, whose text stays with its Outlet.
+_Avoid_: post page, single, permalink
 
 **Text block**:
 A piece of Elena's own prose that isn't an Entry — her portrait/bio, collaborations, thesis description (the whole Thèse Section, for now), contact.

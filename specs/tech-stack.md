@@ -81,9 +81,12 @@ reset Elena's password from the Supabase dashboard.
 - **Video** (Télé Clips): our own cover image and play button; the
   platform's player (YouTube, or Radio-Canada's if it allows embedding)
   loads only on click. Since ADR-0009 the cover exists for page weight, not
-  privacy; build step 2b decides whether to keep it. Whether Radio-Canada's
-  player embeds is checked in build step 2b; if it doesn't, Clips are link
-  cards.
+  privacy; build step 2b-2 decides whether to keep it. Whether Radio-Canada's
+  player embeds is checked in build step 2b-2; if it doesn't, Clips are
+  Cards linking to Radio-Canada.
+- **Images** (Entry images, including Outlets' share images): stored by us
+  and never hotlinked (ADR-0010); the build generates the served sizes
+  with Astro's image tooling.
 - **Audio** (Episodes): Spotify's embedded player; we build no player of
   our own (ADR-0009). Episode lists come from each Show's public feed where
   one exists (build step 6). An Episode with no Spotify embed is shown as
