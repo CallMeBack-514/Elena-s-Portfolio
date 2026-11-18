@@ -71,3 +71,6 @@ covered with no list to update.
 - `articles.spec.ts`: an Article has no detail page. The only pages under
   `/{lang}/articles/` are the Section page and one page per Outlet
   (spec: articles-section). Added by `sections-and-articles`.
+- `entry-ids.test.ts`: a repeated Entry id fails the build instead of
+  silently dropping an Article (`prerenderConflictBehavior: "error"` in
+  `astro.config.mjs`). Found in review of PR #17.
