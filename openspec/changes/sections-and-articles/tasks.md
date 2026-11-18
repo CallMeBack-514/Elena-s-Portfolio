@@ -118,13 +118,13 @@
 
 ## 9. Integration check
 
-- [ ] 9.1 Run the full local gate: `format:check`, `lint`, `typecheck`, `test:unit`, `build`, `test:e2e` and `test:invariants`. Check by hand in `npm run preview`:
+- [x] 9.1 Run the full local gate: `format:check`, `lint`, `typecheck`, `test:unit`, `build`, `test:e2e` and `test:invariants`. Check by hand in `npm run preview`:
   - all three Languages, both themes;
   - a 360 px phone view with the menu;
   - keyboard-only navigation;
   - Firefox for `inert`.
 
-  Record the Article count, the total size of committed images, and any Articles left out or without an image, for the PR description. Verify: everything is green and the numbers are written down.
+  Record the Article count, the total size of committed images, and any Articles left out or without an image, for the PR description. Verify: everything is green and the numbers are written down. _Done locally on 2026-11-17: format, lint, typecheck, 47 unit tests, build (25 pages), 56 E2E tests and the invariants (11 Vitest, 12 Playwright) are green on a fresh build. Checked in a real browser through Playwright MCP: the Main page and Articles in light and dark, and the phone view with the menu open. 23 Articles (10 Le Devoir, 13 Radio-Canada); 16 images, 2.6 MB. Left out: Le Devoir's author pages after page 1 (403). Without an image: 7 Le Devoir Articles whose images answered 403. The Firefox `inert` check moves to `/sdd-ship` (only Chromium is installed here)._
 
 ## Workflow follow-up
 
