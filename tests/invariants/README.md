@@ -47,9 +47,10 @@ covered with no list to update.
   `public-site-shell`.
 - `languages.spec.ts`: every Visitor-facing page exists under `/fr/`,
   `/en/` and `/it/` with a matching `<html lang>` (spec: site-languages).
-- `text-blocks.test.ts`: a Text block missing a Language, or with an empty
-  one, is rejected and names the field. This is what fails the build
-  (ADR-0006).
+- `content-languages.test.ts`: a Text block or an Entry Description
+  missing a Language, or with an empty one, is rejected and names the
+  field. This is what fails the build (ADR-0006). Was `text-blocks.test.ts`;
+  `sections-and-articles` merged Entries into it.
 - `external-resources.spec.ts`: pages load nothing from other origins
   except those on its `ALLOWED_ORIGINS` list, which is empty in 2a. Adding
   an origin is a deliberate, spec-level decision.

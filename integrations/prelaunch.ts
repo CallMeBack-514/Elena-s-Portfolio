@@ -6,7 +6,7 @@
 import { writeFileSync } from "node:fs";
 import type { AstroIntegration } from "astro";
 import { LAUNCHED } from "../src/config/site.ts";
-import { findBlockers, formatBlocker, readTextBlocks } from "../src/lib/launch-readiness.ts";
+import { allBlockers, formatBlocker } from "../src/lib/launch-readiness.ts";
 
 export const NOINDEX_HEADERS = "/*\n  X-Robots-Tag: noindex, nofollow\n";
 
@@ -15,7 +15,10 @@ export default function prelaunch(): AstroIntegration {
     name: "prelaunch",
     hooks: {
       "astro:build:start": ({ logger }) => {
-        const blockers = findBlockers(readTextBlocks("src/data/text-blocks"));
+        const blockers = allBlockers(
+          "src/data/text-blocks",
+          process.env.ENTRIES_DIR ?? "src/data/entries",
+        );
         if (blockers.length === 0) return;
         logger.warn(
           `${blockers.length} item(s) must be reviewed or confirmed before launch:\n` +

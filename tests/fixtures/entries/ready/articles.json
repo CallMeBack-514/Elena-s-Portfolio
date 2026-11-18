@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fleuve",
+    "status": "published",
+    "order": 1,
+    "workTitle": "Le fleuve en hiver",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/societe/1/le-fleuve",
+    "date": "2026-03-12",
+    "description": {
+      "fr": {
+        "value": "Un reportage sur le fleuve.",
+        "reviewed": true
+      },
+      "en": {
+        "value": "A report on the river.",
+        "reviewed": true
+      },
+      "it": {
+        "value": "Un reportage sul fiume.",
+        "reviewed": true
+      }
+    }
+  }
+]

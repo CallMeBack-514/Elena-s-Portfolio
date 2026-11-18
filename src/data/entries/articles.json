@@ -1,0 +1,26 @@
+[
+  {
+    "id": "probe",
+    "status": "published",
+    "order": 1,
+    "workTitle": "Placeholder until task 3.1",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/",
+    "date": "2026-03-12",
+    "description": {
+      "fr": {
+        "value": "x",
+        "reviewed": false
+      },
+      "en": {
+        "value": "x",
+        "reviewed": false
+      },
+      "it": {
+        "value": "x",
+        "reviewed": false
+      }
+    }
+  }
+]

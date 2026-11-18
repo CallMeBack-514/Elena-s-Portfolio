@@ -6,7 +6,7 @@
 
 ## 1. Entry data model
 
-- [ ] 1.1 Add `src/lib/entries.ts` with these zod pieces:
+- [x] 1.1 Add `src/lib/entries.ts` with these zod pieces:
   - `entryLocalized`, with `reviewed` on fr, en and it;
   - the `article` schema: https-only `url`, `originalLanguage` from `LANGUAGES`, ISO `date`, optional `image` and `kicker`;
   - `assertUniqueOrder`;
@@ -21,9 +21,9 @@
 
   Verify: `npm run test:unit` passes.
 
-- [ ] 1.2 Register the `articles` collection in `src/content.config.ts` (`file()` loader on `src/data/entries/articles.json`, with an `ENTRIES_DIR` env override used only by the Draft invariant). Add `publishedEntries(section)` and `preview(section)` to `src/lib/content.ts`. Unit-test the pure filter and sort helpers they use: Drafts out, Order ascending, at most 3. Verify: `npm run test:unit` and `npm run build` pass, the latter with a one-Article placeholder file until group 3.
-- [ ] 1.3 Extend `findBlockers` in `src/lib/launch-readiness.ts` and `scripts/check-launch.ts` to read the Entries files and flag unreviewed `fr` inside Entries, but never inside Text blocks. Add the cases to `tests/unit/launch-readiness.test.ts`. Add `tests/fixtures/entries/{blocked,ready}/articles.json` and cases to `tests/unit/check-launch.test.ts`. Verify: the blocked fixture exits non-zero and names the Article's French Description, and the ready fixture exits zero.
-- [ ] 1.4 Move the "missing Language is rejected" invariant into `tests/invariants/content-languages.test.ts`, covering Text blocks and Article Descriptions, and delete the old `text-blocks.test.ts` in the same commit, noting that it was merged and not removed. Verify: `npm run test:invariants` passes, and it fails if an `it` Description is blanked (check once by hand, then restore).
+- [x] 1.2 Register the `articles` collection in `src/content.config.ts` (`file()` loader on `src/data/entries/articles.json`, with an `ENTRIES_DIR` env override used only by the Draft invariant). Add `publishedEntries(section)` and `preview(section)` to `src/lib/content.ts`. Unit-test the pure filter and sort helpers they use: Drafts out, Order ascending, at most 3. Verify: `npm run test:unit` and `npm run build` pass, the latter with a one-Article placeholder file until group 3.
+- [x] 1.3 Extend `findBlockers` in `src/lib/launch-readiness.ts` and `scripts/check-launch.ts` to read the Entries files and flag unreviewed `fr` inside Entries, but never inside Text blocks. Add the cases to `tests/unit/launch-readiness.test.ts`. Add `tests/fixtures/entries/{blocked,ready}/articles.json` and cases to `tests/unit/check-launch.test.ts`. Verify: the blocked fixture exits non-zero and names the Article's French Description, and the ready fixture exits zero.
+- [x] 1.4 Move the "missing Language is rejected" invariant into `tests/invariants/content-languages.test.ts`, covering Text blocks and Article Descriptions, and delete the old `text-blocks.test.ts` in the same commit, noting that it was merged and not removed. Verify: `npm run test:invariants` passes, and it fails if an `it` Description is blanked (check once by hand, then restore).
 
 ## 2. Interface strings and formatting
 
