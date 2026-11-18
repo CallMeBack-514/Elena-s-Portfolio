@@ -84,6 +84,35 @@ test.describe("on a light device", () => {
   });
 });
 
+test.describe("on a dark device whose storage can be read but not written", () => {
+  test.use({ colorScheme: "dark" });
+
+  // Issue #15: a stale saved choice must not outlive a failed save.
+  test("a failed save clears the old choice, so the next page follows the device", async ({
+    page,
+  }) => {
+    const errors: Error[] = [];
+    page.on("pageerror", (error) => errors.push(error));
+    await page.addInitScript(() => {
+      // Seed the old choice once, then make every later save fail.
+      if (!sessionStorage.getItem("seeded")) {
+        localStorage.setItem("theme", "light");
+        sessionStorage.setItem("seeded", "1");
+      }
+      Storage.prototype.setItem = () => {
+        throw new DOMException("full", "QuotaExceededError");
+      };
+    });
+    await page.goto("/en/");
+    expect(await bg(page)).toBe(LIGHT_BG);
+    await page.getByRole("button", { name: "Switch to dark theme" }).click();
+    expect(await bg(page)).toBe(DARK_BG);
+    await page.goto("/en/these/");
+    expect(await bg(page)).toBe(DARK_BG);
+    expect(errors).toEqual([]);
+  });
+});
+
 test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
 

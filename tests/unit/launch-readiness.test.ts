@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findBlockers } from "../../src/lib/launch-readiness";
+import { findBlockers, findEntryBlockers } from "../../src/lib/launch-readiness";
 
 const reviewed = (value: string) => ({ value, reviewed: true });
 
@@ -55,5 +55,35 @@ describe("findBlockers", () => {
       },
     ];
     expect(findBlockers(blocks)).toEqual([]);
+  });
+});
+
+describe("findEntryBlockers", () => {
+  const description = (fr: boolean, en: boolean, it: boolean) => ({
+    fr: { value: "Un reportage.", reviewed: fr },
+    en: { value: "A report.", reviewed: en },
+    it: { value: "Un reportage.", reviewed: it },
+  });
+
+  it("flags French too, because we draft Entry Descriptions in every Language", () => {
+    const entries = [{ id: "fleuve", description: description(false, true, false) }];
+    expect(findEntryBlockers("articles", entries)).toEqual([
+      { block: "articles/fleuve", path: "description.fr", reason: "unreviewed" },
+      { block: "articles/fleuve", path: "description.it", reason: "unreviewed" },
+    ]);
+  });
+
+  it("treats a French Description with no reviewed flag as unreviewed", () => {
+    const entries = [
+      { id: "a", description: { ...description(true, true, true), fr: { value: "x" } } },
+    ];
+    expect(findEntryBlockers("articles", entries)).toEqual([
+      { block: "articles/a", path: "description.fr", reason: "unreviewed" },
+    ]);
+  });
+
+  it("returns nothing when every Description is reviewed", () => {
+    const entries = [{ id: "a", description: description(true, true, true) }];
+    expect(findEntryBlockers("articles", entries)).toEqual([]);
   });
 });

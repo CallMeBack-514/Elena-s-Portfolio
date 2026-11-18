@@ -1,0 +1,62 @@
+---
+// One Entry as a Card (spec: entry-cards, GLOSSARY: Card). The Work title is
+// the Card's only link; a stretched ::after makes the whole Card clickable
+// with one tab stop. The image is decorative: the title names the Entry.
+import { Picture } from "astro:assets";
+import type { Language } from "../lib/languages";
+import { externalSiteText, type CardView } from "../lib/cards";
+
+interface Props {
+  card: CardView;
+  lang: Language;
+  /** The title's heading level: 2 under a Section page's h1, 3 under a Main page block's h2. */
+  level: 2 | 3;
+  /** Load the image right away (Cards in the first row). */
+  eager?: boolean;
+}
+
+const { card, lang, level, eager = false } = Astro.props;
+const Heading = `h${level}` as const;
+---
+
+<article class="card">
+  <div class="card-media">
+    {card.image ? (
+      <Picture
+        src={card.image}
+        formats={["avif", "webp"]}
+        widths={[400, 800]}
+        sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 400px"
+        alt=""
+        loading={eager ? "eager" : "lazy"}
+      />
+    ) : (
+      <div class="card-placeholder" aria-hidden="true">
+        <span>{card.placeholder}</span>
+      </div>
+    )}
+  </div>
+  <p class="kicker">{card.kicker}</p>
+  <Heading class="card-title">
+    <a href={card.href}>
+      <span class="card-title-text" lang={card.titleLang}>
+        {card.title}
+      </span>
+      {card.externalOutlet && (
+        <>
+          <span class="card-arrow" aria-hidden="true">
+            ↗
+          </span>
+          <span class="visually-hidden">{externalSiteText(lang, card.externalOutlet)}</span>
+        </>
+      )}
+    </a>
+  </Heading>
+  <p class="card-desc">{card.description}</p>
+  <p class="card-meta">
+    <span>{card.outlet}</span>
+    <span aria-hidden="true">·</span>
+    <time datetime={card.date.iso}>{card.date.text}</time>
+    {card.badge && <span class="badge">{card.badge}</span>}
+  </p>
+</article>

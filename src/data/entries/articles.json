@@ -1,0 +1,570 @@
+[
+  {
+    "id": "vols-vehicule-peel-police",
+    "status": "published",
+    "order": 1,
+    "workTitle": "La police de Peel retrouve plus de 90 véhicules volés",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2301062/vols-vehicule-peel-police",
+    "date": "2026-11-16",
+    "description": {
+      "fr": {
+        "value": "La police de Peel démantèle un réseau de vols de véhicules dans le Grand Toronto : douze arrestations et plus de 90 véhicules retrouvés.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Peel police take down a vehicle theft ring in the Greater Toronto Area: twelve arrests and more than 90 vehicles recovered.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "La polizia di Peel smantella una rete di furti d'auto nella Grande Toronto: dodici arresti e oltre 90 veicoli ritrovati.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/vols-vehicule-peel-police.jpg"
+  },
+  {
+    "id": "comptes-instagram-suspendus-lgbtq-meta",
+    "status": "published",
+    "order": 2,
+    "workTitle": "Instagram suspend des comptes de créateurs LGBTQ+",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2294014/comptes-instagram-suspendus-lgbtq-meta",
+    "date": "2026-10-30",
+    "description": {
+      "fr": {
+        "value": "Des créateurs LGBTQ+ voient leurs comptes Instagram suspendus sans explication et peinent à joindre Meta, tandis que des groupes s'inquiètent du projet de loi C-34.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "LGBTQ+ creators lose their Instagram accounts without explanation and struggle to reach anyone at Meta, as advocacy groups raise concerns about Bill C-34.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Creatori LGBTQ+ si vedono sospendere l'account Instagram senza spiegazioni e faticano a contattare Meta, mentre alcune associazioni si preoccupano del progetto di legge C-34.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/comptes-instagram-suspendus-lgbtq-meta.jpg"
+  },
+  {
+    "id": "elections-milton-kratz-zainab-respect",
+    "status": "published",
+    "order": 3,
+    "workTitle": "Le lait frappé du respect politique servi par une ancienne organisatrice de Mamdani",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2292547/elections-milton-kratz-zainab-respect",
+    "date": "2026-10-14",
+    "description": {
+      "fr": {
+        "value": "À Milton, en Ontario, deux candidats à la mairie, dont une ancienne organisatrice de Mamdani, misent sur un lait frappé pour débattre dans le respect.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "In Milton, Ontario, two mayoral candidates, one a former Mamdani organizer, use a milkshake to show they can disagree respectfully.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "A Milton, in Ontario, due candidati sindaco, tra cui un'ex organizzatrice di Mamdani, usano un frappè per mostrare che si può dissentire con rispetto.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/elections-milton-kratz-zainab-respect.jpg"
+  },
+  {
+    "id": "action-grace-scott-mission-charite",
+    "status": "published",
+    "order": 4,
+    "workTitle": "Action de grâce à Scott Mission : l’image de la crise",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2292396/action-grace-scott-mission-charite",
+    "date": "2026-10-12",
+    "description": {
+      "fr": {
+        "value": "Devant l'explosion de la demande d'aide alimentaire, Scott Mission a servi son repas de l'Action de grâce à plus de 600 personnes.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "With demand for food aid soaring, Scott Mission served its Thanksgiving meal to more than 600 people.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Con la domanda di aiuti alimentari in forte crescita, la Scott Mission ha servito il pranzo del Ringraziamento a più di 600 persone.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/action-grace-scott-mission-charite.jpg"
+  },
+  {
+    "id": "parcs-automne-ontario-couleurs-feuilles",
+    "status": "published",
+    "order": 5,
+    "workTitle": "El Niño changera-t-il les couleurs d’automne?",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2291129/parcs-automne-ontario-couleurs-feuilles",
+    "date": "2026-10-11",
+    "description": {
+      "fr": {
+        "value": "Les couleurs d'automne culminent déjà dans plusieurs parcs ontariens, et selon des spécialistes, El Niño ne devrait rien y changer.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Fall colours are already peaking in several Ontario parks, and experts say El Niño should make no difference.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "I colori dell'autunno sono già al culmine in diversi parchi dell'Ontario e, secondo gli esperti, El Niño non dovrebbe cambiare nulla.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/parcs-automne-ontario-couleurs-feuilles.jpg"
+  },
+  {
+    "id": "convento-rico-fermeture-lgbtq",
+    "status": "published",
+    "order": 6,
+    "workTitle": "Le club queer El Convento Rico ferme ses portes à Toronto",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2289513/convento-rico-fermeture-lgbtq",
+    "date": "2026-10-03",
+    "description": {
+      "fr": {
+        "value": "Après plus de trente ans, le club queer El Convento Rico ferme ses portes à Toronto.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "After more than thirty years, the queer club El Convento Rico closes its doors in Toronto.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Dopo più di trent'anni, il locale queer El Convento Rico chiude i battenti a Toronto.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/convento-rico-fermeture-lgbtq.jpg"
+  },
+  {
+    "id": "pib-guerre-tarifs-etats-unis",
+    "status": "published",
+    "order": 7,
+    "workTitle": "Le PIB de juillet est resté stable malgré la crise tarifaire",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2288445/pib-guerre-tarifs-etats-unis",
+    "date": "2026-09-29",
+    "description": {
+      "fr": {
+        "value": "Le PIB canadien est resté stable en juillet malgré la crise tarifaire, mais Deloitte prévoit une croissance plus faible l'an prochain.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Canada's GDP held steady in July despite the tariff crisis, but Deloitte expects slower growth next year.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "A luglio il PIL canadese è rimasto stabile nonostante la crisi dei dazi, ma Deloitte prevede una crescita più debole l'anno prossimo.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/pib-guerre-tarifs-etats-unis.jpg"
+  },
+  {
+    "id": "nature-acces-racisees-barrieres-ontario",
+    "status": "published",
+    "order": 8,
+    "workTitle": "Redéfinir le visage du plein air canadien",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2278088/nature-acces-racisees-barrieres-ontario",
+    "date": "2026-08-28",
+    "description": {
+      "fr": {
+        "value": "Des barrières culturelles et psychologiques tiennent encore des personnes racisées, notamment des femmes, à l'écart du plein air au Canada.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Cultural and psychological barriers still keep racialized people, especially women, from feeling at home in Canada's outdoors.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Barriere culturali e psicologiche tengono ancora le persone razzializzate, in particolare le donne, lontane dalla vita all'aria aperta in Canada.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/nature-acces-racisees-barrieres-ontario.jpg"
+  },
+  {
+    "id": "anne-marie-couffin-deces-francophonie",
+    "status": "published",
+    "order": 9,
+    "workTitle": "Francophonie : Anne-Marie Couffin s’éteint à 84 ans",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2277226/anne-marie-couffin-deces-francophonie",
+    "date": "2026-08-24",
+    "description": {
+      "fr": {
+        "value": "Hommage à Anne-Marie Couffin, première directrice générale du COFTM, qui laisse un héritage durable à la francophonie torontoise. Coécrit avec Hadrien Volle.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "A tribute to Anne-Marie Couffin, the first executive director of COFTM, who leaves a lasting legacy for Toronto's French-speaking community. Co-written with Hadrien Volle.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Omaggio ad Anne-Marie Couffin, prima direttrice generale del COFTM, che lascia un'eredità duratura alla comunità francofona di Toronto. Scritto con Hadrien Volle.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/anne-marie-couffin-deces-francophonie.jpg"
+  },
+  {
+    "id": "universite-ontario-francais-record-rentree",
+    "status": "published",
+    "order": 10,
+    "workTitle": "L’UOF se dirige vers une rentrée record",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2276485/universite-ontario-francais-record-rentree",
+    "date": "2026-08-20",
+    "description": {
+      "fr": {
+        "value": "L'Université de l'Ontario français s'attend à sa plus grande cohorte depuis son ouverture en 2021, avec environ 900 étudiants.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "The Université de l'Ontario français expects its largest intake since opening in 2021, with about 900 students.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "L'Université de l'Ontario français prevede la sua coorte più numerosa dall'apertura nel 2021, con circa 900 studenti.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/universite-ontario-francais-record-rentree.jpg"
+  },
+  {
+    "id": "tarifs-douaniers-ontario-usa",
+    "status": "published",
+    "order": 11,
+    "workTitle": "Suspension des tarifs : un répit fragile pour l’Ontario",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2276194/tarifs-douaniers-ontario-usa",
+    "date": "2026-08-19",
+    "description": {
+      "fr": {
+        "value": "Le report de trois jours des tarifs américains de 50 % laisse l'Ontario dans l'incertitude pendant que les négociations se poursuivent.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "A three-day delay of the 50% US tariffs leaves Ontario in limbo as negotiations continue.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Il rinvio di tre giorni dei dazi americani del 50% lascia l'Ontario nell'incertezza mentre i negoziati proseguono.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/tarifs-douaniers-ontario-usa.jpg"
+  },
+  {
+    "id": "manifestations-bob-rae-conseil-tmu",
+    "status": "published",
+    "order": 12,
+    "workTitle": "TMU : Un conseil formé pour mieux gérer les manifestations",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2276056/manifestations-bob-rae-conseil-tmu",
+    "date": "2026-08-18",
+    "description": {
+      "fr": {
+        "value": "L'Université métropolitaine de Toronto crée un groupe de travail chargé d'un plan d'action sur les manifestations sur son campus.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Toronto Metropolitan University sets up a working group to draft an action plan on handling protests on campus.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "La Toronto Metropolitan University istituisce un gruppo di lavoro per un piano d'azione sulla gestione delle proteste nel campus.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/manifestations-bob-rae-conseil-tmu.jpg"
+  },
+  {
+    "id": "virus-nil-occidental-moustique",
+    "status": "published",
+    "order": 13,
+    "workTitle": "Vivre après le virus du Nil occidental",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/article/info/2275858/virus-nil-occidental-moustique",
+    "date": "2026-08-18",
+    "description": {
+      "fr": {
+        "value": "Une piqûre de moustique a bouleversé la vie d'André Gagné, 60 ans : portrait d'un homme qui réapprend à vivre après le virus du Nil occidental.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "A mosquito bite upended the life of André Gagné, 60: the story of a man rebuilding his life after West Nile virus.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Una puntura di zanzara ha sconvolto la vita di André Gagné, 60 anni: il ritratto di un uomo che ricomincia a vivere dopo il virus del Nilo occidentale.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/virus-nil-occidental-moustique.jpg"
+  },
+  {
+    "id": "vladimir-korneev-refugie-trouve-musique-maison",
+    "status": "published",
+    "order": 14,
+    "workTitle": "Vladimir Kornéev, un réfugié qui a trouvé dans la musique, sa maison",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/musique/943413/vladimir-korneev-refugie-trouve-musique-maison",
+    "date": "2025-12-22",
+    "description": {
+      "fr": {
+        "value": "Portrait de Vladimir Kornéev, chanteur d'origine géorgienne et réfugié, qui trouve sa place sur les scènes québécoises.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "A portrait of Vladimir Kornéev, a Georgian-born singer and refugee finding his place on Quebec stages.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Ritratto di Vladimir Kornéev, cantante di origine georgiana e rifugiato, che si fa strada sui palchi del Québec.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "noel-ceux-ne-fetent-pas",
+    "status": "published",
+    "order": 15,
+    "workTitle": "Le Noël de ceux qui ne le fêtent pas",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/942915/noel-ceux-ne-fetent-pas",
+    "date": "2025-12-19",
+    "description": {
+      "fr": {
+        "value": "Anas Hassouna et Oussama Fares présentent « Noël des autres », un spectacle qui prend le contre-pied de l'esprit des Fêtes.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Anas Hassouna and Oussama Fares present \"Noël des autres\", a show that runs against the holiday spirit.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Anas Hassouna e Oussama Fares presentano «Noël des autres», uno spettacolo controcorrente rispetto allo spirito delle feste.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "j-ai-dit-oui-coulisses-pouvoir-eric-dupond-moretti",
+    "status": "published",
+    "order": 16,
+    "workTitle": "«J’ai dit oui !»: dans les coulisses du pouvoir avec Éric Dupond-Moretti",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/theatre/924777/j-ai-dit-oui-coulisses-pouvoir-eric-dupond-moretti",
+    "date": "2025-10-14",
+    "description": {
+      "fr": {
+        "value": "L'ancien garde des Sceaux Éric Dupond-Moretti revient sur ses quatre années au ministère de la Justice en France.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Former French justice minister Éric Dupond-Moretti looks back on his four years at the ministry.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "L'ex ministro della Giustizia francese Éric Dupond-Moretti ripercorre i suoi quattro anni al ministero.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/j-ai-dit-oui-coulisses-pouvoir-eric-dupond-moretti.jpg"
+  },
+  {
+    "id": "affronter-ecoanxiete-grace-art",
+    "status": "published",
+    "order": 17,
+    "workTitle": "Affronter son écoanxiété grâce à l’art",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/arts-visuels/916161/affronter-ecoanxiete-grace-art",
+    "date": "2025-09-11",
+    "description": {
+      "fr": {
+        "value": "L'exposition « Panic Room… Pièces de survie » met en images l'écoanxiété, une peur bien de notre temps.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "The exhibition \"Panic Room… Pièces de survie\" turns eco-anxiety, a very contemporary fear, into images.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "La mostra «Panic Room… Pièces de survie» trasforma in immagini l'ecoansia, una paura tutta contemporanea.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/affronter-ecoanxiete-grace-art.jpg"
+  },
+  {
+    "id": "entreprises-quebecoises-veulent-creer-filiere-recyclage-textile",
+    "status": "published",
+    "order": 18,
+    "workTitle": "Des entreprises québécoises veulent créer une filière de recyclage textile",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/actualites/environnement/915462/entreprises-quebecoises-veulent-creer-filiere-recyclage-textile",
+    "date": "2025-09-09",
+    "description": {
+      "fr": {
+        "value": "Trois entrepreneurs québécois proposent des solutions pour créer une filière de recyclage textile et réduire le gaspillage.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Three Quebec entrepreneurs propose ways to build a textile recycling industry and cut waste.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Tre imprenditori del Québec propongono soluzioni per creare una filiera del riciclo tessile e ridurre gli sprechi.",
+        "reviewed": false
+      }
+    },
+    "image": "../../assets/entries/articles/entreprises-quebecoises-veulent-creer-filiere-recyclage-textile.jpg"
+  },
+  {
+    "id": "serie-fiers-etre-entre-communaute-lgbtq-spvm-fosse-demeure",
+    "status": "published",
+    "order": 19,
+    "workTitle": "Entre la communauté LGBTQ+ et le SPVM, un fossé demeure",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/actualites/societe/907354/serie-fiers-etre-entre-communaute-lgbtq-spvm-fosse-demeure",
+    "date": "2025-08-05",
+    "description": {
+      "fr": {
+        "value": "Les répressions policières du passé laissent encore une cicatrice entre la communauté LGBTQ+ de Montréal et le SPVM.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Past police crackdowns still leave a scar between Montreal's LGBTQ+ community and the city's police.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Le repressioni della polizia del passato lasciano ancora una cicatrice tra la comunità LGBTQ+ di Montréal e la polizia cittadina.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "replonger-histoire-titanic-place-bonaventure",
+    "status": "published",
+    "order": 20,
+    "workTitle": "Replonger dans l’histoire du «Titanic» à la Place Bonaventure",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/907114/replonger-histoire-titanic-place-bonaventure",
+    "date": "2025-08-05",
+    "description": {
+      "fr": {
+        "value": "L'exposition « Titanic. Un voyage immersif », à la Place Bonaventure, s'appuie sur des centaines d'artefacts.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "The exhibition \"Titanic. Un voyage immersif\" at Place Bonaventure is built around hundreds of artifacts.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "La mostra «Titanic. Un voyage immersif», alla Place Bonaventure, si basa su centinaia di reperti.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "bistro-jojo-50-ans-blues",
+    "status": "published",
+    "order": 21,
+    "workTitle": "Le Bistro à Jojo, 50 ans de blues",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/musique/907033/bistro-jojo-50-ans-blues",
+    "date": "2025-08-04",
+    "description": {
+      "fr": {
+        "value": "Le Bistro à Jojo fête ses 50 ans de blues avec une programmation spéciale tout le mois d'août.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Le Bistro à Jojo marks 50 years of blues with a special line-up all through August.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Le Bistro à Jojo festeggia 50 anni di blues con una programmazione speciale per tutto il mese di agosto.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "trois-chansons-quebecoises-lice-prix-chanson-polaris",
+    "status": "published",
+    "order": 22,
+    "workTitle": "Trois chansons québécoises en lice pour le prix Polaris",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/culture/musique/905017/trois-chansons-quebecoises-lice-prix-chanson-polaris",
+    "date": "2025-07-29",
+    "description": {
+      "fr": {
+        "value": "Lou-Adriane Cassidy, Yves Jarvis et Ribbon Skirt sont en lice pour le Prix de la chanson Polaris.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Lou-Adriane Cassidy, Yves Jarvis and Ribbon Skirt are in the running for the Polaris Heritage song prize.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Lou-Adriane Cassidy, Yves Jarvis e Ribbon Skirt sono in gara per il premio Polaris alla canzone.",
+        "reviewed": false
+      }
+    }
+  },
+  {
+    "id": "scene-nocturne-accueille-tiedement-nouveau-reglement-bruit-plateau-mont-royal",
+    "status": "published",
+    "order": 23,
+    "workTitle": "La scène nocturne accueille tièdement le nouveau règlement sur le bruit du Plateau-Mont-Royal",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/actualites/transports-urbanisme/904672/scene-nocturne-accueille-tiedement-nouveau-reglement-bruit-plateau-mont-royal",
+    "date": "2025-07-28",
+    "description": {
+      "fr": {
+        "value": "Le milieu de la nuit juge insuffisant le nouveau règlement sur le bruit du Plateau-Mont-Royal.",
+        "reviewed": false
+      },
+      "en": {
+        "value": "Nightlife venues find the Plateau-Mont-Royal's new noise bylaw falls short.",
+        "reviewed": false
+      },
+      "it": {
+        "value": "Il mondo della notte giudica insufficiente il nuovo regolamento sul rumore del Plateau-Mont-Royal.",
+        "reviewed": false
+      }
+    }
+  }
+]

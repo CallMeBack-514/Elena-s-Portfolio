@@ -46,7 +46,15 @@ const { lang } = Astro.props;
       try {
         localStorage.setItem("theme", next);
       } catch {
-        // Storage blocked: the switch still applies to this page.
+        // Saving failed: the switch still applies to this page. Clear any
+        // older choice so later pages follow the device rather than it
+        // (issue #15). If storage is blocked outright, this fails too, and
+        // there is no saved choice to worry about.
+        try {
+          localStorage.removeItem("theme");
+        } catch {
+          // Storage blocked entirely.
+        }
       }
       label();
     });

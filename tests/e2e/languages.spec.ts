@@ -52,7 +52,7 @@ test("the current Language is marked and is not a link to itself", async ({ page
   await expect(switcher.getByRole("link", { name: "English" })).toHaveCount(0);
 });
 
-test("Section names are translated but anchors are shared", async ({ page }) => {
+test("Section names are translated but paths are shared", async ({ page }) => {
   for (const [lang, label] of [
     ["fr", "Balados"],
     ["en", "Podcasts"],
@@ -60,6 +60,6 @@ test("Section names are translated but anchors are shared", async ({ page }) => 
   ]) {
     await page.goto(`/${lang}/`);
     const link = page.locator(".nav").getByRole("link", { name: label, exact: true });
-    await expect(link).toHaveAttribute("href", "#balados");
+    await expect(link).toHaveAttribute("href", `/${lang}/balados/`);
   }
 });

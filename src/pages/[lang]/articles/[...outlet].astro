@@ -1,0 +1,72 @@
+---
+// The Articles page and its Outlet filter pages (spec: articles-section).
+// `outlet` is undefined for /{lang}/articles/ and an Outlet's slug for
+// /{lang}/articles/{outlet}/, so both share one list and one filter. The
+// filter is plain links: it needs no JavaScript and every view has its URL.
+import SectionPage from "../../../layouts/SectionPage.astro";
+import EntryCard from "../../../components/EntryCard.astro";
+import { LANGUAGES, type Language } from "../../../lib/languages";
+import { publishedEntries } from "../../../lib/content";
+import { outletSlug } from "../../../lib/entries";
+import { articleCard } from "../../../lib/cards";
+import { t } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+  const articles = await publishedEntries("articles");
+  const outlets = [...new Set(articles.map((a) => a.outlet))];
+  // One page per Outlet, and only when there is a choice to make.
+  const slugs = outlets.length >= 2 ? outlets.map(outletSlug) : [];
+  return LANGUAGES.flatMap((lang) => [
+    { params: { lang, outlet: undefined } },
+    ...slugs.map((outlet) => ({ params: { lang, outlet } })),
+  ]);
+}
+
+const lang = Astro.params.lang as Language;
+const current = Astro.params.outlet;
+const all = await publishedEntries("articles");
+const outlets = [...new Set(all.map((a) => a.outlet))].sort((a, b) => a.localeCompare(b, lang));
+const outletName = outlets.find((o) => outletSlug(o) === current);
+const shown = current ? all.filter((a) => a.outlet === outletName) : all;
+const base = `/${lang}/articles/`;
+---
+
+<SectionPage
+  lang={lang}
+  section="articles"
+  path={current ? `articles/${current}/` : "articles/"}
+  title={outletName ? `${t(lang, "section.articles")} · ${outletName}` : undefined}
+>
+  {outlets.length >= 2 && (
+    <nav class="filter" aria-label={t(lang, "filter.label")}>
+      <ul>
+        <li>
+          <a href={base} aria-current={current ? undefined : "page"}>
+            {t(lang, "filter.all")}
+          </a>
+        </li>
+        {outlets.map((outlet) => (
+          <li>
+            <a
+              href={`${base}${outletSlug(outlet)}/`}
+              aria-current={outlet === outletName ? "page" : undefined}
+            >
+              {outlet}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+  {shown.length > 0 ? (
+    <ul class="cards">
+      {shown.map((article, index) => (
+        <li>
+          <EntryCard card={articleCard(article, lang)} lang={lang} level={2} eager={index < 3} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="soon">{t(lang, "comingSoon")}</p>
+  )}
+</SectionPage>

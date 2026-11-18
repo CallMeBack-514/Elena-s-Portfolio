@@ -2,20 +2,20 @@
 // going public (see src/lib/launch-readiness.ts). /sdd-release runs it
 // before flipping LAUNCHED. Runs on plain Node 24 (type stripping).
 //
-// Usage: node scripts/check-launch.ts [text-blocks directory]
-import { findBlockers, formatBlocker, readTextBlocks } from "../src/lib/launch-readiness.ts";
+// Usage: node scripts/check-launch.ts [text-blocks directory] [entries directory]
+import { allBlockers, formatBlocker, type Blocker } from "../src/lib/launch-readiness.ts";
 
-const dir = process.argv[2] ?? "src/data/text-blocks";
+const textBlocksDir = process.argv[2] ?? "src/data/text-blocks";
+const entriesDir = process.argv[3] ?? "src/data/entries";
 
-let blocks: { block: string }[];
+let blockers: Blocker[];
 try {
-  blocks = readTextBlocks(dir);
+  blockers = allBlockers(textBlocksDir, entriesDir);
 } catch (error) {
   console.error(`check:launch: ${(error as Error).message}`);
   process.exit(2);
 }
 
-const blockers = findBlockers(blocks);
 if (blockers.length > 0) {
   console.error(`check:launch: ${blockers.length} item(s) block the launch:`);
   for (const blocker of blockers) console.error(`  - ${formatBlocker(blocker)}`);

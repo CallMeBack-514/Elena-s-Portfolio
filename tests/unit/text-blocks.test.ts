@@ -16,7 +16,7 @@ function issuePaths(input: unknown): string[] {
   return result.error.issues.map((issue) => issue.path.join("."));
 }
 
-// The "missing Language" cases live in tests/invariants/text-blocks.test.ts.
+// The "missing Language" cases live in tests/invariants/content-languages.test.ts.
 describe("textBlockSchema", () => {
   it("accepts a complete Text block", () => {
     expect(textBlockSchema.safeParse(portrait).success).toBe(true);

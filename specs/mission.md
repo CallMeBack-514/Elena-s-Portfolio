@@ -121,7 +121,7 @@ Each step is its own feature through `/sdd-start`:
    - **2a, site shell** (done, PR #11): design, Languages, theme toggle,
      Main page with Elena's Text blocks, launch gate.
    - **2b, Sections**, in the design brief's Card design, split in two:
-     - **2b-1**: Cards, Section pages, the Main page in blocks with
+     - **2b-1** (done, PR #17): Cards, Section pages, the Main page in blocks with
        Previews, the mobile menu, and Articles with the Outlet filter.
      - **2b-2**: Télé (video cover), Balados (Spotify), Art (Series,
        Poems, Substack) and their Detail pages.

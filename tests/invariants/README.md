@@ -47,12 +47,30 @@ covered with no list to update.
   `public-site-shell`.
 - `languages.spec.ts`: every Visitor-facing page exists under `/fr/`,
   `/en/` and `/it/` with a matching `<html lang>` (spec: site-languages).
-- `text-blocks.test.ts`: a Text block missing a Language, or with an empty
-  one, is rejected and names the field. This is what fails the build
-  (ADR-0006).
+- `content-languages.test.ts`: a Text block or an Entry Description
+  missing a Language, or with an empty one, is rejected and names the
+  field. This is what fails the build (ADR-0006). Was `text-blocks.test.ts`;
+  `sections-and-articles` merged Entries into it.
 - `external-resources.spec.ts`: pages load nothing from other origins
   except those on its `ALLOWED_ORIGINS` list, which is empty in 2a. Adding
   an origin is a deliberate, spec-level decision.
 - `prelaunch.spec.ts`: while `LAUNCHED` is false, every page carries a
   robots noindex meta and `dist/_headers` sends `X-Robots-Tag: noindex`. It
   flips to asserting their absence once launched.
+- `drafts.test.ts`: a Draft Entry appears on no page, in any Language,
+  by title or by link, and creates no Outlet filter page. It builds the
+  real site once against `tests/fixtures/entries/drafts/` (via
+  `ENTRIES_DIR`) into `test-results/`, and checks the Published Article
+  is shown so the test can't pass vacuously (spec: section-pages). Added
+  by `sections-and-articles`.
+- `navigation.spec.ts`: every nav link on every Language's Main page
+  reaches its Section page. On a phone, the menu keeps keyboard focus,
+  makes the page inert, closes on Escape with focus back on its button,
+  and passes axe when open, in both themes. Without JavaScript the nav is
+  fully visible (spec: site-navigation). Added by `sections-and-articles`.
+- `articles.spec.ts`: an Article has no detail page. The only pages under
+  `/{lang}/articles/` are the Section page and one page per Outlet
+  (spec: articles-section). Added by `sections-and-articles`.
+- `entry-ids.test.ts`: a repeated Entry id fails the build instead of
+  silently dropping an Article (`prerenderConflictBehavior: "error"` in
+  `astro.config.mjs`). Found in review of PR #17.

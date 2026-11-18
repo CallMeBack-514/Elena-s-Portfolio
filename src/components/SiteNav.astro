@@ -1,0 +1,112 @@
+---
+// The Section nav (spec: site-navigation). It is rendered once: on wide
+// screens, and without JavaScript, it is a plain bar of links. Under 820 px
+// the script below collapses it behind a menu button and opens it as a
+// full-screen menu, with the rest of the page made `inert` while it is open.
+import { SECTIONS, type Language, type Section } from "../lib/languages";
+import { sectionName, t } from "../i18n/ui";
+
+interface Props {
+  lang: Language;
+  /** The Section whose page (or Outlet filter page) this is. */
+  current?: Section;
+}
+
+const { lang, current } = Astro.props;
+---
+
+<nav class="nav" aria-label={t(lang, "nav.label")}>
+  <div class="wrap">
+    <div>
+      <button
+        type="button"
+        class="menu-toggle"
+        hidden
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label={t(lang, "menu.open")}
+        data-open-label={t(lang, "menu.open")}
+        data-close-label={t(lang, "menu.close")}
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path class="icon-open" d="M2 5h16M2 10h16M2 15h16"></path>
+          <path class="icon-close" d="M4 4l12 12M16 4L4 16"></path>
+        </svg>
+      </button>
+      <ul id="nav-links">
+        {SECTIONS.map((section) => (
+          <li>
+            <a
+              href={`/${lang}/${section}/`}
+              aria-current={section === current ? "page" : undefined}
+            >
+              {sectionName(lang, section)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const root = document.documentElement;
+  const nav = document.querySelector<HTMLElement>("nav.nav");
+  const button = nav?.querySelector<HTMLButtonElement>(".menu-toggle");
+
+  if (nav && button) {
+    const wide = window.matchMedia("(min-width: 821px)");
+    // Everything but the nav: made inert while the menu is open, so focus
+    // and the accessibility tree stay inside it.
+    const rest = () =>
+      document.querySelectorAll<HTMLElement>("body > header, body > main, body > footer");
+    const isOpen = () => root.dataset.menu === "open";
+
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      root.dataset.menu = open ? "open" : "closed";
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute(
+        "aria-label",
+        (open ? button.dataset.closeLabel : button.dataset.openLabel) ?? "",
+      );
+      for (const element of rest()) element.inert = open;
+      document.body.style.overflow = open ? "hidden" : "";
+      if (!open && restoreFocus) button.focus();
+    };
+
+    button.addEventListener("click", () => setOpen(!isOpen()));
+
+    nav.addEventListener("click", (event) => {
+      if (isOpen() && (event.target as Element).closest("a")) setOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!isOpen()) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false, true);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items: HTMLElement[] = [button, ...nav.querySelectorAll<HTMLElement>("a")];
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    });
+
+    wide.addEventListener("change", () => {
+      if (wide.matches && isOpen()) setOpen(false);
+    });
+    // A page restored from the back/forward cache must not come back open.
+    window.addEventListener("pageshow", () => setOpen(false));
+
+    setOpen(false);
+    button.hidden = false;
+  }
+</script>
