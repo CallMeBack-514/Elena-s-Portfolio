@@ -57,3 +57,17 @@ covered with no list to update.
 - `prelaunch.spec.ts`: while `LAUNCHED` is false, every page carries a
   robots noindex meta and `dist/_headers` sends `X-Robots-Tag: noindex`. It
   flips to asserting their absence once launched.
+- `drafts.test.ts`: a Draft Entry appears on no page, in any Language,
+  by title or by link, and creates no Outlet filter page. It builds the
+  real site once against `tests/fixtures/entries/drafts/` (via
+  `ENTRIES_DIR`) into `test-results/`, and checks the Published Article
+  is shown so the test can't pass vacuously (spec: section-pages). Added
+  by `sections-and-articles`.
+- `navigation.spec.ts`: every nav link on every Language's Main page
+  reaches its Section page. On a phone, the menu keeps keyboard focus,
+  makes the page inert, closes on Escape with focus back on its button,
+  and passes axe when open, in both themes. Without JavaScript the nav is
+  fully visible (spec: site-navigation). Added by `sections-and-articles`.
+- `articles.spec.ts`: an Article has no detail page. The only pages under
+  `/{lang}/articles/` are the Section page and one page per Outlet
+  (spec: articles-section). Added by `sections-and-articles`.

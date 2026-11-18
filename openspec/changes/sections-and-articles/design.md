@@ -239,7 +239,7 @@ seeding `theme=light` via `addInitScript`.
 
 **Invariants to promote** (marked in the specs):
 
-1. **Draft never shown:** `tests/invariants/drafts.spec.ts`, against the
+1. **Draft never shown:** `tests/invariants/drafts.test.ts`, against the
    fixture build.
 2. **Entry Descriptions complete:** extend `tests/invariants/text-blocks.test.ts`
    into `content-languages.test.ts`, covering both schemas.

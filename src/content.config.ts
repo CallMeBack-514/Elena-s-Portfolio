@@ -7,7 +7,7 @@ import { textBlockSchema } from "./lib/text-blocks";
 import { articleSchema } from "./lib/entries";
 
 // Tests point this at tests/fixtures/entries/<case>/ to build with known
-// Drafts (tests/invariants/drafts.spec.ts). Never set in a real build.
+// Drafts (tests/invariants/drafts.test.ts). Never set in a real build.
 const ENTRIES_DIR = process.env.ENTRIES_DIR ?? "src/data/entries";
 
 const textBlocks = defineCollection({

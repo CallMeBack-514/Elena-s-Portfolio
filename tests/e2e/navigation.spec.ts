@@ -52,27 +52,7 @@ test.describe("on a phone", () => {
     expect(box).toMatchObject({ x: 0, y: 0, width: PHONE.width, height: PHONE.height });
   });
 
-  test("keyboard: focus wraps inside the open menu, Escape closes it and returns focus", async ({
-    page,
-  }) => {
-    await page.goto("/en/");
-    const button = menuButton(page);
-    await button.focus();
-    await page.keyboard.press("Enter");
-    await expect(button).toHaveAttribute("aria-expanded", "true");
-    // Button, then the five links, then back to the button.
-    for (let i = 0; i < 5; i++) await page.keyboard.press("Tab");
-    await expect(nav(page).getByRole("link", { name: "Art", exact: true })).toBeFocused();
-    await page.keyboard.press("Tab");
-    await expect(button).toBeFocused();
-    await page.keyboard.press("Shift+Tab");
-    await expect(nav(page).getByRole("link", { name: "Art", exact: true })).toBeFocused();
-    await expect(page.locator("main")).toHaveJSProperty("inert", true);
-    await page.keyboard.press("Escape");
-    await expect(button).toHaveAttribute("aria-expanded", "false");
-    await expect(button).toBeFocused();
-    await expect(page.locator("main")).toHaveJSProperty("inert", false);
-  });
+  // The keyboard journey is an invariant: tests/invariants/navigation.spec.ts.
 
   test("following a link closes the menu", async ({ page }) => {
     await page.goto("/it/");
@@ -93,16 +73,4 @@ test.describe("on a phone", () => {
   });
 });
 
-test.describe("on a phone without JavaScript", () => {
-  test.use({ viewport: PHONE, javaScriptEnabled: false });
-
-  test("no menu button, every link visible, no horizontal scrolling", async ({ page }) => {
-    await page.goto("/fr/");
-    await expect(menuButton(page)).toBeHidden();
-    for (const name of ["Articles", "Télé", "Balados", "Thèse", "Art"]) {
-      await expect(nav(page).getByRole("link", { name, exact: true })).toBeVisible();
-    }
-    const width = await page.evaluate(() => document.documentElement.scrollWidth);
-    expect(width).toBeLessThanOrEqual(PHONE.width);
-  });
-});
+// The no-JavaScript nav on a phone is an invariant: tests/invariants/navigation.spec.ts.

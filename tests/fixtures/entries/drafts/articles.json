@@ -1,0 +1,32 @@
+[
+  {
+    "id": "temoin-publie",
+    "status": "published",
+    "order": 1,
+    "workTitle": "Article publié témoin",
+    "originalLanguage": "fr",
+    "outlet": "Le Devoir",
+    "url": "https://www.ledevoir.com/fixture/1/temoin-publie",
+    "date": "2026-03-12",
+    "description": {
+      "fr": { "value": "Un article publié.", "reviewed": true },
+      "en": { "value": "A published article.", "reviewed": true },
+      "it": { "value": "Un articolo pubblicato.", "reviewed": true }
+    }
+  },
+  {
+    "id": "brouillon-secret",
+    "status": "draft",
+    "order": 2,
+    "workTitle": "Brouillon secret témoin",
+    "originalLanguage": "fr",
+    "outlet": "Radio-Canada",
+    "url": "https://ici.radio-canada.ca/fixture/2/brouillon-secret",
+    "date": "2026-03-13",
+    "description": {
+      "fr": { "value": "Un brouillon.", "reviewed": true },
+      "en": { "value": "A draft.", "reviewed": true },
+      "it": { "value": "Una bozza.", "reviewed": true }
+    }
+  }
+]

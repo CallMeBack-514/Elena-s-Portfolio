@@ -105,8 +105,8 @@
 
 ## 8. Invariants
 
-- [ ] 8.1 Add `tests/fixtures/entries/drafts/articles.json`, with one Published and one Draft Article and their distinctive titles. Add `tests/invariants/drafts.spec.ts`: it builds once with `ENTRIES_DIR` pointing at the fixture, into a temporary out dir, and asserts that no page in any Language contains the Draft's title or URL, while the Published one appears. Verify: it passes, and it fails if `publishedEntries` stops filtering Drafts (check once by hand, then restore).
-- [ ] 8.2 Add `tests/invariants/navigation.spec.ts` with these checks:
+- [x] 8.1 Add `tests/fixtures/entries/drafts/articles.json`, with one Published and one Draft Article and their distinctive titles. Add `tests/invariants/drafts.test.ts`: it builds once with `ENTRIES_DIR` pointing at the fixture, into a temporary out dir under `test-results/` (Vitest, no browser needed; inside the project because Astro moves files with `rename()`), and asserts that no page in any Language contains the Draft's title or URL, while the Published one appears. Verify: it passes, and it fails if `publishedEntries` stops filtering Drafts (check once by hand, then restore).
+- [x] 8.2 Add `tests/invariants/navigation.spec.ts` with these checks:
   - every nav link on every Language's Main page returns 200 at its Section path;
   - the 360 px mobile-menu keyboard journey;
   - axe with the menu open in light and dark;
@@ -114,7 +114,7 @@
 
   Verify: `npm run test:invariants` passes.
 
-- [ ] 8.3 Add the "no Article detail pages" check to `tests/invariants/languages.spec.ts` or a new `articles.spec.ts`: every built path under `/{lang}/articles/` is the index or a known Outlet slug. Update the "What's here now" list in `tests/invariants/README.md`. Verify: `npm run test:invariants` passes. Also confirm the existing accessibility and external-resources invariants now iterate over the new pages (their logged page count grows).
+- [x] 8.3 Add the "no Article detail pages" check to `tests/invariants/languages.spec.ts` or a new `articles.spec.ts`: every built path under `/{lang}/articles/` is the index or a known Outlet slug. Update the "What's here now" list in `tests/invariants/README.md`. Verify: `npm run test:invariants` passes. Also confirm the existing accessibility and external-resources invariants now iterate over the new pages (their logged page count grows).
 
 ## 9. Integration check
 
