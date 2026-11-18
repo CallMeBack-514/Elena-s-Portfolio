@@ -38,7 +38,7 @@
 
 ## 4. Card
 
-- [ ] 4.1 Add `src/components/EntryCard.astro`, taking a view model as in design.md. It renders:
+- [x] 4.1 Add `src/components/EntryCard.astro`, taking a view model as in design.md. It renders:
   - `<Picture>` (AVIF and WebP, 400/800 widths, `alt=""`, lazy loading unless `eager`), or the 3:2 placeholder;
   - the kicker, then the title link with `lang`, ↗ and the hidden external-site text;
   - the Description, then the Outlet and date;
@@ -46,7 +46,7 @@
 
   Add the Card styles to `global.css`: kicker type, the accent underline animation, the 1.04 image scale on hover and focus-within, `prefers-reduced-motion`, and the auto-fill grid. Verify: `npm run typecheck` and `npm run build` pass.
 
-- [ ] 4.2 Add `tests/e2e/cards.spec.ts`:
+- [x] 4.2 Add `tests/e2e/cards.spec.ts`:
   - the content order and French date;
   - the badge on `/en/` and none on `/fr/` for a French Article;
   - `lang` on the title;
@@ -59,14 +59,14 @@
 
 ## 5. Navigation and layout
 
-- [ ] 5.1 Update `BaseLayout.astro`:
+- [x] 5.1 Update `BaseLayout.astro`:
   - add an `isMain` prop, so the masthead `<h1>` appears only on the Main page and is a home link elsewhere;
   - point the nav links at `/{lang}/{section}/`, with `aria-current="page"` for the current Section (passed as a prop);
   - add the `menu-toggle` button (rendered `hidden`) and its bundled script, which sets `data-menu-open` and `inert` on `header`, `main` and `footer`, traps Tab, closes on Escape (returning focus) and on link click, and closes on resize past 820 px.
 
   Add the overlay styles under the existing 820 px breakpoint. Verify: `npm run typecheck` and `npm run build` pass.
 
-- [ ] 5.2 Add `tests/e2e/navigation.spec.ts`:
+- [x] 5.2 Add `tests/e2e/navigation.spec.ts`:
   - nav targets and `aria-current` on `/fr/articles/le-devoir/`;
   - the masthead home link on `/en/these/`;
   - at 360 px: open the menu, check `aria-expanded`, Tab wraps, Escape closes with focus back on the button, activating "Tesi" lands on `/it/these/` closed, and resizing to 1024 px closes it;
@@ -76,7 +76,7 @@
 
 ## 6. Pages
 
-- [ ] 6.1 Add the `SectionPage` layout and the `src/pages/[lang]/{tele,balados,art}.astro` "coming soon" pages, plus `src/pages/[lang]/these.astro`, showing the full Thèse moved from the Main page. Add `tests/e2e/section-pages.spec.ts`:
+- [x] 6.1 Add the `SectionPage` layout and the `src/pages/[lang]/{tele,balados,art}.astro` "coming soon" pages, plus `src/pages/[lang]/these.astro`, showing the full Thèse moved from the Main page. Add `tests/e2e/section-pages.spec.ts`:
   - all five paths in `/it/` with their `<h1>`;
   - `/fr/tele/` coming soon, with no list;
   - the `/en/these/` quotation, summary and four fields;
@@ -84,14 +84,14 @@
 
   Verify: `npm run test:e2e` passes.
 
-- [ ] 6.2 Add `src/pages/[lang]/articles/index.astro` and `[outlet].astro`, which list `publishedEntries("articles")` as Cards, with the filter `<nav>` shown only when there are at least 2 Outlets and `aria-current` on the active link. The `[outlet]` page title names the Outlet. Add `tests/e2e/articles.spec.ts`:
+- [x] 6.2 Add `src/pages/[lang]/articles/index.astro` and `[outlet].astro`, which list `publishedEntries("articles")` as Cards, with the filter `<nav>` shown only when there are at least 2 Outlets and `aria-current` on the active link. The `[outlet]` page title names the Outlet. Add `tests/e2e/articles.spec.ts`:
   - the Order matches `articles.json`;
   - with JS disabled: follow the "Radio-Canada" filter link, check that it is current, then "All" leads back;
   - `/fr/articles/le-devoir/` lists only Le Devoir.
 
   Verify: `npm run test:e2e` passes.
 
-- [ ] 6.3 Rewrite `src/pages/[lang]/index.astro` into one block per Section: the Articles Preview (3 Cards, the first row eager) plus "Tout voir →"; "coming soon" plus a link for Télé, Balados and Art; the Thèse question plus "Lire la suite →". The portrait, Collaborations and Contact stay unchanged. Update `tests/e2e/main-page.spec.ts`:
+- [x] 6.3 Rewrite `src/pages/[lang]/index.astro` into one block per Section: the Articles Preview (3 Cards, the first row eager) plus "Tout voir →"; "coming soon" plus a link for Télé, Balados and Art; the Thèse question plus "Lire la suite →". The portrait, Collaborations and Contact stay unchanged. Update `tests/e2e/main-page.spec.ts`:
   - replace the nav-anchor and full-Thèse scenarios;
   - add the Preview showing Orders 1–3 and "Tout voir" → `/fr/articles/`;
   - `/it/#tele` coming soon, with its link;

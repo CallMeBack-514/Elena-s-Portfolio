@@ -1,0 +1,35 @@
+---
+// The Thèse page (spec: section-pages): the whole Thèse Text block, which
+// the Main page only previews with its research question.
+import SectionPage from "../../layouts/SectionPage.astro";
+import { LANGUAGES, type Language } from "../../lib/languages";
+import { inLang, textBlock } from "../../lib/content";
+import { t } from "../../i18n/ui";
+
+export function getStaticPaths() {
+  return LANGUAGES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Language;
+const these = await textBlock("these");
+---
+
+<SectionPage lang={lang} section="these" path="these/">
+  <p class="label programme">{inLang(these.programme, lang)}</p>
+  <div class="thesis">
+    <div>
+      <blockquote>{inLang(these.question, lang)}</blockquote>
+      <p class="lede">{inLang(these.summary, lang)}</p>
+    </div>
+    <dl class="facts">
+      <dt>{t(lang, "these.terrain")}</dt>
+      <dd>{inLang(these.terrain, lang)}</dd>
+      <dt>{t(lang, "these.cadre")}</dt>
+      <dd>{inLang(these.cadre, lang)}</dd>
+      <dt>{t(lang, "these.livrable")}</dt>
+      <dd>{inLang(these.livrable, lang)}</dd>
+      <dt>{t(lang, "these.soutenance")}</dt>
+      <dd>{inLang(these.soutenance, lang)}</dd>
+    </dl>
+  </div>
+</SectionPage>

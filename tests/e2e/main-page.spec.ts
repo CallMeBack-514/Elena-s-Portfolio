@@ -1,5 +1,6 @@
 // Spec: main-page.
 import { expect, test } from "@playwright/test";
+import { publishedArticles } from "../support/articles";
 
 test("masthead: Elena's name is the only level-1 heading, with tagline and location", async ({
   page,
@@ -12,28 +13,6 @@ test("masthead: Elena's name is the only level-1 heading, with tagline and locat
   await expect(page.getByText("Toronto · Montréal")).toBeVisible();
 });
 
-test("the Section nav lands on each part of the Main page, named in the page's Language", async ({
-  page,
-}) => {
-  await page.goto("/it/");
-  const nav = page.getByRole("navigation", { name: "Sezioni" });
-  const expected = [
-    ["Articoli", "articles"],
-    ["TV", "tele"],
-    ["Podcast", "balados"],
-    ["Tesi", "these"],
-    ["Arte", "art"],
-  ];
-  await expect(nav.getByRole("link")).toHaveText(expected.map(([name]) => name));
-  for (const [name, id] of expected) {
-    await nav.getByRole("link", { name, exact: true }).click();
-    await expect(page).toHaveURL(new RegExp(`#${id}$`));
-    await expect(page.locator(`#${id}`).getByRole("heading", { level: 2 }).first()).toHaveText(
-      name,
-    );
-  }
-});
-
 test("portrait without a photo shows heading, bio and byline, and no image", async ({ page }) => {
   await page.goto("/fr/");
   await expect(
@@ -41,7 +20,8 @@ test("portrait without a photo shows heading, bio and byline, and no image", asy
   ).toBeVisible();
   await expect(page.getByText(/^À Radio-Canada depuis 2024\./)).toBeVisible();
   await expect(page.getByText("Par Elena Meyer · Toronto")).toBeVisible();
-  await expect(page.locator("main img")).toHaveCount(0);
+  // The portrait part only: Cards further down have their own images.
+  await expect(page.locator(".front img")).toHaveCount(0);
 });
 
 test("Collaborations are listed in Elena's order", async ({ page }) => {
@@ -58,14 +38,38 @@ test("Collaborations are listed in Elena's order", async ({ page }) => {
   await expect(list.first()).toContainText("2024");
 });
 
-test("Thèse is shown in full, in English", async ({ page }) => {
-  await page.goto("/en/#these");
+test("each Section has a block, in nav order, between the portrait and Contact", async ({
+  page,
+}) => {
+  await page.goto("/fr/");
+  const ids = await page.locator("main > section").evaluateAll((els) => els.map((el) => el.id));
+  expect(ids).toEqual(["articles", "tele", "balados", "these", "art", "contact"]);
+});
+
+test("the Articles block previews the first three Published Articles and links to all", async ({
+  page,
+}) => {
+  await page.goto("/fr/#articles");
+  const block = page.locator("#articles");
+  const firstThree = publishedArticles().slice(0, 3);
+  await expect(block.locator(".card-title-text")).toHaveText(firstThree.map((a) => a.workTitle));
+  const more = block.getByRole("link", { name: /^Tout voir/ });
+  await expect(more).toHaveAttribute("href", "/fr/articles/");
+  await expect(more).toContainText("Tout voir");
+  await expect(more).toContainText("→");
+});
+
+test("the Thèse block shows the question and links to its page, without the fields", async ({
+  page,
+}) => {
+  await page.goto("/it/#these");
   const these = page.locator("#these");
-  await expect(these.locator("blockquote")).toHaveText(
-    "How can we tell a community's story with it, rather than about it?",
+  await expect(these.locator("blockquote")).toBeVisible();
+  await expect(these.getByRole("link", { name: /Continua a leggere/ })).toHaveAttribute(
+    "href",
+    "/it/these/",
   );
-  await expect(these.locator("dt")).toHaveText(["Field", "Framework", "Deliverable", "Defence"]);
-  await expect(these.locator("dd").last()).toHaveText("Planned for 2027");
+  await expect(these.locator("dt, dd")).toHaveCount(0);
 });
 
 test("a Section without content says 'coming soon' in the page's Language", async ({ page }) => {
@@ -74,6 +78,7 @@ test("a Section without content says 'coming soon' in the page's Language", asyn
   await expect(tele.getByRole("heading", { level: 2 })).toHaveText("TV");
   await expect(tele.getByText("In arrivo.")).toBeVisible();
   await expect(tele.getByRole("list")).toHaveCount(0);
+  await expect(tele.getByRole("link", { name: /Vedi tutto/ })).toHaveAttribute("href", "/it/tele/");
 });
 
 test("contact shows the email as text and the profile links, and no form", async ({ page }) => {

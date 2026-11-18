@@ -1,10 +1,13 @@
 ---
-// The Main page, one per Language (spec: main-page). In 2a it holds Elena's
-// Text blocks and a "coming soon" place for each Section without content;
-// build step 2b adds the Previews and the Section pages.
+// The Main page, one per Language (spec: main-page): Elena's portrait and
+// Collaborations, then one block per Section, in nav order: a Preview of
+// Cards with "Tout voir →", the Thèse question, or "coming soon". Contact
+// closes the page.
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { LANGUAGES, type Language, type Section } from "../../lib/languages";
-import { inLang, textBlock } from "../../lib/content";
+import EntryCard from "../../components/EntryCard.astro";
+import { LANGUAGES, SECTIONS, type Language } from "../../lib/languages";
+import { inLang, preview, textBlock } from "../../lib/content";
+import { articleCard } from "../../lib/cards";
 import { sectionName, t } from "../../i18n/ui";
 
 export function getStaticPaths() {
@@ -19,7 +22,14 @@ const [portrait, collaborations, these, contact] = await Promise.all([
   textBlock("contact"),
 ]);
 
-const comingSoon: Section[] = ["articles", "tele", "balados"];
+const blocks = await Promise.all(
+  SECTIONS.map(async (section) => ({
+    section,
+    name: sectionName(lang, section),
+    href: `/${lang}/${section}/`,
+    cards: (await preview(section)).map((article) => articleCard(article, lang)),
+  })),
+);
 ---
 
 <BaseLayout lang={lang} path="" isMain>
@@ -55,50 +65,42 @@ const comingSoon: Section[] = ["articles", "tele", "balados"];
     </aside>
   </div>
 
-  {comingSoon.map((section) => (
+  {blocks.map(({ section, name, href, cards }) => (
     <section id={section} aria-labelledby={`${section}-heading`}>
       <div class="wrap">
         <div class="seghead">
-          <h2 id={`${section}-heading`}>{sectionName(lang, section)}</h2>
+          <h2 id={`${section}-heading`}>{name}</h2>
         </div>
-        <p class="soon">{t(lang, "comingSoon")}</p>
+        {section === "these" ? (
+          <div class="thesis-preview">
+            <blockquote>{inLang(these.question, lang)}</blockquote>
+            <a class="more" href={href}>
+              {t(lang, "readMore")}
+              <span class="visually-hidden"> ({name})</span> →
+            </a>
+          </div>
+        ) : (
+          <>
+            {cards.length > 0 ? (
+              <ul class="cards">
+                {cards.map((card) => (
+                  <li>
+                    <EntryCard card={card} lang={lang} level={3} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="soon">{t(lang, "comingSoon")}</p>
+            )}
+            <a class="more" href={href}>
+              {t(lang, "seeAll")}
+              <span class="visually-hidden"> ({name})</span> →
+            </a>
+          </>
+        )}
       </div>
     </section>
   ))}
-
-  <section id="these" aria-labelledby="these-heading">
-    <div class="wrap">
-      <div class="seghead">
-        <h2 id="these-heading">{sectionName(lang, "these")}</h2>
-        <span class="tc">{inLang(these.programme, lang)}</span>
-      </div>
-      <div class="thesis">
-        <div>
-          <blockquote>{inLang(these.question, lang)}</blockquote>
-          <p class="lede">{inLang(these.summary, lang)}</p>
-        </div>
-        <dl class="facts">
-          <dt>{t(lang, "these.terrain")}</dt>
-          <dd>{inLang(these.terrain, lang)}</dd>
-          <dt>{t(lang, "these.cadre")}</dt>
-          <dd>{inLang(these.cadre, lang)}</dd>
-          <dt>{t(lang, "these.livrable")}</dt>
-          <dd>{inLang(these.livrable, lang)}</dd>
-          <dt>{t(lang, "these.soutenance")}</dt>
-          <dd>{inLang(these.soutenance, lang)}</dd>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <section id="art" aria-labelledby="art-heading">
-    <div class="wrap">
-      <div class="seghead">
-        <h2 id="art-heading">{sectionName(lang, "art")}</h2>
-      </div>
-      <p class="soon">{t(lang, "comingSoon")}</p>
-    </div>
-  </section>
 
   <section id="contact" class="contact" aria-labelledby="contact-heading">
     <div class="wrap">

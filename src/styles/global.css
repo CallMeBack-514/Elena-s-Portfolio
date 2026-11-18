@@ -445,6 +445,83 @@ section {
   line-height: 1.1;
 }
 
+/* A Section page's own heading reads like a block heading, one size up. */
+.section-page {
+  padding-block: 34px 64px;
+}
+
+.section-page .seghead h1 {
+  font-weight: 700;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  letter-spacing: -0.012em;
+  margin: 0;
+  line-height: 1.05;
+}
+
+.section-page .programme {
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+/* "Tout voir →" under a Main page block */
+.more {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.more:hover,
+.more:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.thesis-preview blockquote {
+  margin: 0;
+  max-width: 34ch;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* Outlet filter (spec: articles-section) */
+.filter ul {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.filter a:hover {
+  border-color: var(--ink);
+}
+
+.filter a[aria-current="page"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
 .seghead .tc {
   font-family: var(--sans);
   font-size: 11.5px;

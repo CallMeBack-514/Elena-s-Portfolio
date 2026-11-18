@@ -107,7 +107,13 @@ test("activating anywhere on an Article Card opens the Outlet's page in the same
   await page.goto("/en/articles/");
   let popup = false;
   context.on("page", () => (popup = true));
-  await page.locator(".card").first().locator(".card-desc").click();
+  // Click where the Description is drawn: the link's overlay covers the whole
+  // Card, so the click must land on the link (Playwright's element click
+  // would refuse, rightly reporting that the overlay intercepts it).
+  const descLocator = page.locator(".card").first().locator(".card-desc");
+  await descLocator.scrollIntoViewIfNeeded();
+  const desc = await descLocator.boundingBox();
+  await page.mouse.click(desc!.x + desc!.width / 2, desc!.y + desc!.height / 2);
   await expect(page).toHaveURL(first.url);
   expect(popup).toBe(false);
 });
@@ -117,10 +123,7 @@ test("keyboard focus shows the hover feedback and a visible focus indicator", as
   const link = page.locator(".card-title a").first();
   await link.focus();
   const card = page.locator(".card").first();
-  await expect(card.locator(".card-title-text")).toHaveCSS(
-    "background-size",
-    /^\d+(\.\d+)?px 1px$/,
-  );
+  await expect(card.locator(".card-title-text")).toHaveCSS("background-size", "100% 1px");
   const outline = await link.evaluate((el) => getComputedStyle(el).outlineStyle);
   expect(outline).not.toBe("none");
 });
@@ -137,6 +140,6 @@ test.describe("with reduced motion", () => {
     const img = card.locator("img");
     await expect(img).toHaveCSS("transform", "none");
     await expect(card.locator(".card-title-text")).toHaveCSS("transition-duration", "0s");
-    await expect(card.locator(".card-title-text")).not.toHaveCSS("background-size", "0px 1px");
+    await expect(card.locator(".card-title-text")).toHaveCSS("background-size", "100% 1px");
   });
 });
