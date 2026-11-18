@@ -51,7 +51,13 @@ to cut. Shipping a good site for Elena is still the result that matters.
 - A bare address sends the Visitor to the Language matching their browser,
   falling back to French.
 - The **Main page** shows Elena's Text blocks and a Preview of every Section.
-- Each **Section** also has its own full page:
+- Each **Section** also has its own full page, listing its Entries as
+  Cards. Every Entry except an Article has its own Detail page. An
+  Article's Card links to the Outlet, which keeps its text.
+- Entry images, including the share image an Outlet publishes for an
+  Article, are stored by us and never loaded from another site
+  (ADR-0010).
+- The Sections:
   - **Articles**: Articles, filterable by Outlet.
   - **Télé**: Clips. Video plays behind our own cover that loads the
     platform's player only on click.
@@ -114,8 +120,11 @@ Each step is its own feature through `/sdd-start`:
    built in. Includes the video cover and the theme toggle. Split in two:
    - **2a, site shell** (done, PR #11): design, Languages, theme toggle,
      Main page with Elena's Text blocks, launch gate.
-   - **2b, Sections**: Section pages, Previews, Outlet filter, video
-     cover, Poem pages.
+   - **2b, Sections**, in the design brief's Card design, split in two:
+     - **2b-1**: Cards, Section pages, the Main page in blocks with
+       Previews, the mobile menu, and Articles with the Outlet filter.
+     - **2b-2**: Télé (video cover), Balados (Spotify), Art (Series,
+       Poems, Substack) and their Detail pages.
 3. **Portal core**: sign-in, Entries, Order, Draft/Published, Text blocks,
    rebuild on save, the 3-day scheduled rebuild. _Critical._
 4. **Photo uploads** for Series. _Critical._
