@@ -98,4 +98,5 @@ _Task 8.2 (update the address if Cloudflare gives a different one) moved to `/sd
 - `/sdd-check`: open the PR, run CI, then Gate 2 and Gate 3.
 - `/sdd-ship`: manual test, verify invariant promotion, merge, archive this change.
 - `/sdd-release`: connect Cloudflare Pages by following README → Deploying, with step-by-step guidance (the Maintainer is new to Cloudflare). Update the address in `astro.config.mjs` and `src/config/site.ts` if it is not `elena-meyer.pages.dev` (was task 8.2). Check `/fr/` carries `X-Robots-Tag`, and test the deployed site on a real phone.
+- Found at `/sdd-ship`: a Cloudflare project named `elena-meyer` already exists and is connected to the repo, but as **Workers**, not Pages. Its "Workers Builds" check fails on every PR because there is no Workers config (`wrangler.jsonc`). At `/sdd-release`, decide between Workers and Pages and fix or recreate the project. It is not one of our required CI checks.
 - Do not launch. Going public is `/sdd-release` after 2b and Elena's review (`npm run check:launch` must pass).
