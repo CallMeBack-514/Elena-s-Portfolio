@@ -49,13 +49,19 @@ An Article SHALL have no detail page. Its Card links to the Outlet's page for th
 
 ### Requirement: Outlet filter pages
 
-Each Outlet with at least one Published Article SHALL have a page at `/{lang}/articles/{outlet}/` that lists only that Outlet's Published Articles, in Elena's Order. The Outlet's path segment is its name in lower case, with accents removed and spaces replaced by hyphens (Le Devoir → `le-devoir`).
+Each Outlet with at least one Published Article SHALL have a page at `/{lang}/articles/{outlet}/` that lists only that Outlet's Published Articles, in Elena's Order. The Outlet's path segment is its name in lower case, with accents removed and spaces replaced by hyphens (Le Devoir → `le-devoir`). The build SHALL fail when two differently written Outlet names give the same path segment, or when a name gives an empty one.
 
 #### Scenario: Le Devoir only
 
 - **GIVEN** Published Articles from Le Devoir and Radio-Canada
 - **WHEN** a Visitor opens `/fr/articles/le-devoir/`
 - **THEN** only Le Devoir Articles are listed, in Order, and the page title names Le Devoir
+
+#### Scenario: Two Outlets that would share a path
+
+- **GIVEN** Articles from an Outlet recorded as "Écho" and another recorded as "Echo"
+- **WHEN** the site is built
+- **THEN** the build fails and names both Outlets
 
 ### Requirement: Outlet filter links
 
